@@ -1,0 +1,92 @@
+:host {
+  display: block;
+}
+
+.metrics-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metric-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 55%, transparent);
+  padding: 1rem 1.125rem;
+}
+
+.metric-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.metric-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-on-surface) 50%, transparent);
+}
+
+.metric-icon.velocity {
+  color: var(--color-primary);
+}
+
+.metric-icon.bugs {
+  color: var(--color-error);
+}
+
+.metric-icon.cycle {
+  color: #185fa5;
+}
+
+.metric-icon.deployment {
+  color: var(--color-success);
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.metric-value span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--color-on-surface) 48%, transparent);
+}
+
+.metric-note {
+  margin-top: 0.375rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+.metric-note.velocity,
+.metric-note.cycle {
+  color: var(--color-success);
+}
+
+.metric-note.bugs {
+  color: var(--color-error);
+}
+
+.metric-note.deployment {
+  color: color-mix(in srgb, var(--color-on-surface) 60%, transparent);
+}
+
+@media (max-width: 1199px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    margin-top: 1.25rem;
+  }
+}

@@ -1,0 +1,177 @@
+:host {
+  display: block;
+}
+
+.members-card {
+  background: var(--color-surface-container-lowest);
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 48%, transparent);
+  border-radius: 0.875rem;
+  overflow: hidden;
+  box-shadow: var(--ambient-shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  background: var(--color-surface-container-low);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-outline-variant) 48%, transparent);
+}
+
+th {
+  padding: 1rem 1.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-outline);
+}
+
+tbody tr {
+  border-top: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
+  transition: background-color 160ms ease;
+}
+
+tbody tr:hover {
+  background: color-mix(in srgb, var(--color-surface-container-low) 65%, transparent);
+}
+
+td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-cell img,
+.initials {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+}
+
+.user-cell img {
+  object-fit: cover;
+}
+
+.initials {
+  display: grid;
+  place-items: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-outline);
+  background: var(--color-surface-container-high);
+}
+
+.initials.owner {
+  color: #fff;
+  background: var(--color-primary-container);
+}
+
+.user-cell p {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.user-cell p span {
+  margin-left: 0.25rem;
+  color: var(--color-outline);
+  font-weight: 400;
+}
+
+.user-cell small {
+  font-size: 0.75rem;
+  color: var(--color-outline);
+}
+
+.role-chip {
+  display: inline-flex;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.role-chip.owner {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+}
+
+.role-chip.admin {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.role-chip.member {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.role-chip.viewer {
+  background: #f8fafc;
+  color: #94a3b8;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-outline);
+}
+
+.online-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #10b981;
+}
+
+.online-cell span:last-child,
+.offline-text {
+  font-size: 0.75rem;
+  color: var(--color-on-surface-muted);
+  font-weight: 500;
+}
+
+.align-right {
+  text-align: right;
+}
+
+td button {
+  border: 0;
+  background: transparent;
+  color: var(--color-outline);
+  border-radius: 999px;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+td button:hover {
+  color: var(--color-on-surface);
+  background: color-mix(in srgb, var(--color-surface-container-low) 80%, transparent);
+}
+
+@media (max-width: 960px) {
+  .members-card {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 48rem;
+  }
+}

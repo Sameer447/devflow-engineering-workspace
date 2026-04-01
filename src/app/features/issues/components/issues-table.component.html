@@ -1,0 +1,87 @@
+<section class="issues-content-heading">
+  <div>
+    <h1>All Issues</h1>
+    <p>Manage and track engineering tasks across all active projects.</p>
+  </div>
+
+  <div class="controls">
+    <button type="button">
+      <span class="material-symbols-outlined">filter_list</span>
+      Filters
+    </button>
+    <button type="button">
+      <span class="material-symbols-outlined">sort</span>
+      Sort
+    </button>
+  </div>
+</section>
+
+<section class="issues-table-wrap" aria-label="All issues table">
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Issue Title</th>
+          <th>Project</th>
+          <th>Assignee</th>
+          <th class="align-right">Created</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (issue of issues(); track issue.id) {
+          <tr
+            class="issue-row"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="'Open details for issue ' + issue.id"
+            (click)="selectIssue(issue)"
+            (keydown.enter)="selectIssue(issue)"
+            (keydown.space)="selectIssue(issue); $event.preventDefault()"
+          >
+            <td class="issue-id">{{ issue.id }}</td>
+            <td>
+              <div class="status-chip" [class]="'status-chip ' + issue.status.tone">
+                <span class="status-dot"></span>
+                {{ issue.status.label }}
+              </div>
+            </td>
+            <td>
+              <div class="priority-chip" [class]="'priority-chip ' + issue.priority.tone">
+                {{ issue.priority.label }}
+              </div>
+            </td>
+            <td>
+              <span class="issue-title">{{ issue.title }}</span>
+            </td>
+            <td>
+              <span class="project-chip">{{ issue.project }}</span>
+            </td>
+            <td>
+              <div class="assignee-cell">
+                @if (issue.assignee.avatarUrl) {
+                  <img [src]="issue.assignee.avatarUrl" [alt]="issue.assignee.name + ' profile photo'" />
+                } @else {
+                  <div class="fallback-avatar">?</div>
+                }
+                <span class="assignee-name" [class.is-unassigned]="issue.assignee.name === 'Unassigned'">{{ issue.assignee.name }}</span>
+              </div>
+            </td>
+            <td class="issue-created align-right">{{ issue.createdAt }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="table-footer">
+    <span>Showing <strong>5</strong> of <strong>124</strong> issues</span>
+    <div class="pager">
+      <button type="button" class="is-disabled" aria-disabled="true">Previous</button>
+      <button type="button">Next</button>
+    </div>
+  </footer>
+</section>

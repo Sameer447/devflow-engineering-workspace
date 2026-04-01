@@ -1,0 +1,129 @@
+.board-topbar {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  background: var(--color-surface-container-lowest);
+  box-shadow: var(--ambient-shadow);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.logo {
+  color: color-mix(in srgb, var(--color-primary) 88%, black 12%);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.top-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.top-links a {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.top-links .is-active {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.2rem;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.search-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  background: var(--color-surface-container-low);
+  padding: 0.35rem 0.75rem;
+  min-width: 12rem;
+}
+
+.search-box .material-symbols-outlined {
+  font-size: 1rem;
+  color: var(--color-secondary);
+}
+
+.search-box input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-on-surface);
+  font-size: 0.84rem;
+  width: 100%;
+}
+
+.icon-btn {
+  height: 2.1rem;
+  width: 2.1rem;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-secondary);
+  position: relative;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--color-surface-container-low);
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-surface-container-lowest);
+  background: var(--color-error);
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 70%, transparent 30%);
+}
+
+@media (max-width: 900px) {
+  .top-links {
+    display: none;
+  }
+
+  .search-box {
+    min-width: 9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .board-topbar {
+    padding: 0 0.75rem;
+  }
+
+  .search-box {
+    display: none;
+  }
+}

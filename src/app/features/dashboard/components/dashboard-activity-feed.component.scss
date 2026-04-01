@@ -1,0 +1,79 @@
+:host {
+  display: block;
+}
+
+.activity-shell {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  outline: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
+  padding: 1.25rem;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.activity-list {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.timeline {
+  position: absolute;
+  left: 0.95rem;
+  top: 0.4rem;
+  bottom: 0.45rem;
+  width: 2px;
+  background: color-mix(in srgb, var(--color-surface-container-high) 80%, transparent);
+}
+
+.activity-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.activity-item img,
+.initials {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-surface-container-lowest);
+}
+
+.activity-item img {
+  object-fit: cover;
+}
+
+.initials {
+  display: grid;
+  place-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.target {
+  font-weight: 500;
+}
+
+.time {
+  display: inline-block;
+  margin-top: 0.2rem;
+  font-size: 0.625rem;
+  color: var(--color-on-surface-muted);
+  font-family: var(--font-mono);
+}

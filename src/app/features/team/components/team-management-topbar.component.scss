@@ -1,0 +1,132 @@
+:host {
+  display: block;
+}
+
+.team-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 4rem;
+  padding: 0.75rem 2rem;
+  background: color-mix(in srgb, var(--color-surface-container-lowest) 94%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-outline-variant) 50%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.search-wrap {
+  position: relative;
+  width: min(100%, 36rem);
+}
+
+.search-wrap span {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: color-mix(in srgb, var(--color-on-surface-muted) 78%, transparent);
+}
+
+.search-wrap input {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0 0.85rem 0 2.5rem;
+  background: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.new-task-btn {
+  min-height: 2.5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.new-task-btn:hover {
+  opacity: 0.92;
+}
+
+.divider {
+  width: 1px;
+  height: 1.5rem;
+  background: color-mix(in srgb, var(--color-outline-variant) 70%, transparent);
+  margin-inline: 0.4rem;
+}
+
+.icon-btn,
+.profile-btn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--color-on-surface-muted);
+}
+
+.icon-btn:hover {
+  background: color-mix(in srgb, var(--color-surface-container-low) 90%, transparent);
+  color: var(--color-primary);
+}
+
+.profile-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 60%, transparent);
+}
+
+.profile-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 960px) {
+  .team-topbar {
+    position: static;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrap {
+    width: 100%;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 640px) {
+  .new-task-btn span:last-child,
+  .divider {
+    display: none;
+  }
+}

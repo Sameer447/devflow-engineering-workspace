@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed-dim": "#ffb77d",
+            "tertiary-fixed": "#ffdcc3",
+            "tertiary": "#683500",
+            "primary-container": "#534ab7",
+            "tertiary-container": "#8a4900",
+            "secondary": "#5c5c7a",
+            "inverse-primary": "#c5c0ff",
+            "on-tertiary-fixed": "#2f1500",
+            "surface-container": "#ededf1",
+            "primary-fixed": "#e3dfff",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "error": "#ba1a1a",
+            "surface-tint": "#584fbc",
+            "outline-variant": "#c8c4d5",
+            "primary": "#3b309e",
+            "background": "#f9f9fd",
+            "on-secondary-fixed-variant": "#444461",
+            "on-secondary-container": "#60607e",
+            "on-surface-variant": "#474553",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#f0f0f4",
+            "surface-container-highest": "#e2e2e6",
+            "surface-bright": "#f9f9fd",
+            "inverse-surface": "#2e3034",
+            "outline": "#787584",
+            "surface-variant": "#e2e2e6",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#181933",
+            "on-secondary": "#ffffff",
+            "on-background": "#1a1c1f",
+            "surface-dim": "#d9dade",
+            "secondary-fixed-dim": "#c5c3e6",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#e1dfff",
+            "primary-fixed-dim": "#c5c0ff",
+            "on-tertiary-container": "#ffc69a",
+            "secondary-container": "#dedcff",
+            "surface-container-low": "#f3f3f7",
+            "surface": "#f9f9fd",
+            "on-primary-fixed": "#140067",
+            "surface-container-high": "#e8e8ec",
+            "on-surface": "#1a1c1f",
+            "on-primary-fixed-variant": "#3f35a3",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#d1ccff",
+            "on-error": "#ffffff"
+          },
+          fontFamily: {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Inter"],
+            "mono": ["JetBrains Mono"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #e2e2e6; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #c8c4d5; }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface overflow-hidden h-screen">
+<!-- Background Scrim for the Kanban Board context -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-0"></div>
+<!-- Main Side Drawer Container -->
+<aside class="fixed top-0 right-0 h-screen w-[600px] bg-surface-container-lowest shadow-2xl border-l border-surface-container-high z-50 flex flex-col transform transition-transform duration-300">
+<!-- TopNavBar (Shared Component Integration) -->
+<header class="h-16 flex items-center justify-between px-6 border-b border-surface-container-high bg-surface-container-lowest sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<span class="font-mono text-sm font-medium text-outline">DF-1992</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors text-on-surface-variant" title="Copy link">
+<span class="material-symbols-outlined" data-icon="link">link</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors text-on-surface-variant" title="Open full page">
+<span class="material-symbols-outlined" data-icon="open_in_full">open_in_full</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+<div class="h-6 w-[1px] bg-surface-container-high mx-2"></div>
+<button class="p-2 hover:bg-error/10 hover:text-error rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<main class="flex-1 overflow-y-auto">
+<!-- Section 1: Identity -->
+<section class="px-8 pt-8 pb-6">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant text-[11px] font-bold tracking-wider uppercase rounded">In Progress</span>
+<span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs text-outline font-medium uppercase tracking-widest">Engineering Workspace</span>
+</div>
+<h1 class="text-2xl font-bold text-on-surface leading-tight tracking-tight outline-none focus:ring-2 focus:ring-primary/20 p-1 -ml-1 rounded-lg hover:bg-surface-container-low transition-all cursor-text" contenteditable="true">
+          Fix memory leak in websocket reconnection
+        </h1>
+</section>
+<!-- Section 2: Properties Grid -->
+<section class="px-8 pb-8">
+<div class="grid grid-cols-2 gap-4 p-5 bg-surface-container-low rounded-xl">
+<!-- Assignee -->
+<div class="space-y-1.5">
+<span class="text-[11px] font-semibold text-outline-variant uppercase tracking-wider block">Assignee</span>
+<div class="flex items-center gap-2.5 px-2 py-1.5 hover:bg-surface-container-lowest rounded-lg transition-colors cursor-pointer group">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="professional portrait of a woman software engineer with friendly expression and studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbF5MvN7lDF_GwxAPc2j3xWQTrnX2wo1gjVrT4XD6q2iywQk3QBYPxOtwu5Ps778CpS6EvbaWGlpc3c5KN_2iyGFxzAwF2vu7YefZ-t_9AZFPAasraOku50AEp8cfZ6q16unHKW1wexbu9G6YfE1MbVe_K5ATijC00iJuND6eZxSB9ZOR2EdhnVB3_na7j0Q7UBdzI0okh_XqgiLtIeUBbTY-flZjYFdon_EIEgvOo1PQX9FEUIN_B2YuNcmhebE7LaGjtV75ItG1O"/>
+<span class="text-sm font-medium text-on-surface">Sarah K.</span>
+<span class="material-symbols-outlined text-xs text-outline opacity-0 group-hover:opacity-100">expand_more</span>
+</div>
+</div>
+<!-- Priority -->
+<div class="space-y-1.5">
+<span class="text-[11px] font-semibold text-outline-variant uppercase tracking-wider block">Priority</span>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-error-container/40 rounded-lg w-fit cursor-pointer">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="text-sm font-semibold text-on-error-container">Urgent</span>
+</div>
+</div>
+<!-- Due Date -->
+<div class="space-y-1.5">
+<span class="text-[11px] font-semibold text-outline-variant uppercase tracking-wider block">Due Date</span>
+<div class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-on-surface hover:bg-surface-container-lowest rounded-lg transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span>Tomorrow</span>
+</div>
+</div>
+<!-- Project -->
+<div class="space-y-1.5">
+<span class="text-[11px] font-semibold text-outline-variant uppercase tracking-wider block">Project</span>
+<div class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-on-surface hover:bg-surface-container-lowest rounded-lg transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm text-secondary">layers</span>
+<span>Infrastructure</span>
+</div>
+</div>
+<!-- Labels -->
+<div class="col-span-2 space-y-1.5 pt-2">
+<span class="text-[11px] font-semibold text-outline-variant uppercase tracking-wider block">Labels</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium rounded-full">Bug</span>
+<span class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium rounded-full">High Priority</span>
+<button class="p-1 hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm text-outline">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Description -->
+<section class="px-8 pb-8">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-outline">description</span>
+            Description
+          </h3>
+</div>
+<div class="border border-surface-container-high rounded-xl overflow-hidden">
+<div class="flex items-center gap-1 p-2 bg-surface-container-low border-b border-surface-container-high">
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">format_bold</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">format_italic</span>
+</button>
+<button class="p-1.5 bg-primary-fixed/30 rounded transition-colors text-primary">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+</button>
+<div class="h-4 w-[1px] bg-outline-variant mx-1"></div>
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">image</span>
+</button>
+</div>
+<div class="p-4 min-h-[120px] text-sm text-on-surface leading-relaxed focus:outline-none" contenteditable="true">
+            The WebSocket reconnection logic appears to be creating new event listeners on each retry without cleaning up the previous ones. This leads to a gradual increase in memory usage in the main thread during intermittent network instability.
+            <br/><br/>
+<span class="bg-surface-container text-on-surface-variant px-1.5 py-0.5 rounded font-mono text-[13px]">/src/network/socket-manager.ts:142</span>
+</div>
+</div>
+</section>
+<!-- Section 4: Attachments -->
+<section class="px-8 pb-8">
+<h3 class="text-sm font-bold text-on-surface flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-lg text-outline">attach_file</span>
+          Attachments (2)
+        </h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-surface-container-high rounded-xl hover:border-primary-container transition-all cursor-pointer group">
+<div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-on-surface truncate">memory_dump_v1.pdf</p>
+<p class="text-[10px] text-outline font-mono">1.2 MB</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline opacity-0 group-hover:opacity-100">download</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-surface-container-high rounded-xl hover:border-primary-container transition-all cursor-pointer group">
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">image</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-on-surface truncate">leak_graph.png</p>
+<p class="text-[10px] text-outline font-mono">450 KB</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline opacity-0 group-hover:opacity-100">download</span>
+</div>
+</div>
+</section>
+<!-- Section 5: Subtasks -->
+<section class="px-8 pb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-outline">check_circle</span>
+            Subtasks
+          </h3>
+<span class="text-xs font-mono font-medium text-outline">0 / 3</span>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low/50 hover:bg-surface-container-low rounded-xl transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">radio_button_unchecked</span>
+<span class="text-sm text-on-surface flex-1">Isolate socket-manager unit test</span>
+<img class="w-5 h-5 rounded-full object-cover" data-alt="close up headshot of a male developer with glasses in a modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG0yBYPybPYPam8XLMVkFngfpN6IDj28wJe770exlZmReMBqb7oa9Vc0qQO9L7zxH9W7aUDM2wQ0ipBqT_o8JSFbkQG7aBMMNUgUKE1dzK_GczIRHIUJK1fUChztp3sty_59TYCxaHLeqx9jljbMotqxaM2KmlBl7g8s4-8PSv0cQvADSIfShlXhBZ2kPslx5p8cIyR6jTJzrMLkD7i3z9shTmc-3QUvAhW7gl2WmLMcjENAhBYg-wTKAQZYJUJlMIbK7M5y_BSVTe"/>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low/50 hover:bg-surface-container-low rounded-xl transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">radio_button_unchecked</span>
+<span class="text-sm text-on-surface flex-1">Implement listener cleanup hook</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low/50 hover:bg-surface-container-low rounded-xl transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">radio_button_unchecked</span>
+<span class="text-sm text-on-surface flex-1">Verify with performance profiler</span>
+</div>
+<button class="flex items-center gap-2 p-2 mt-2 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+            Add subtask
+          </button>
+</div>
+</section>
+<!-- Section 6: Comments & Activity -->
+<section class="px-8 pb-32">
+<div class="flex border-b border-surface-container-high mb-6">
+<button class="px-4 py-3 text-sm font-bold text-primary border-b-2 border-primary">
+            Comments
+          </button>
+<button class="px-4 py-3 text-sm font-semibold text-outline hover:text-on-surface-variant transition-colors">
+            Activity
+          </button>
+</div>
+<!-- Threaded Comments Pattern -->
+<div class="space-y-6">
+<div class="flex gap-4">
+<img class="w-8 h-8 rounded-full object-cover mt-1" data-alt="close up of a professional man with beard in creative office background soft bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvrFe4ouut0weSj_wMVgBNsLGxHLw8NQehbHdXRw4x2HXaho7dqSuDPi-N8xw-J1pzsOvjfoWFDSaBUvJLwZ4YcRlhp9ZdLpo7vwfGBN_0cJ_AFk3gK9b-50cHj2qg0olX8lLf-1OYeBkMnILGUKWfkuoQLPfQzQD2xBSol58cMkCUevTBY_-AF-EkztMzTRVHnqOh94h_fugLyC60Zxcp8WDLKeSbNhufZzrkQjm-Tysw6pecvlBoipeJlREnyCvA1hsCsIPo85D5"/>
+<div class="flex-1 space-y-1">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-on-surface">Alex Rivera</span>
+<span class="text-[10px] font-mono text-outline">2 hours ago</span>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl text-sm leading-relaxed">
+                I've noticed this also happens when the user manually toggles the airplane mode. It triggers a burst of reconnection attempts.
+              </div>
+<div class="flex items-center gap-4 pt-1">
+<button class="flex items-center gap-1.5 text-xs font-semibold text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">thumb_up</span> 2
+                </button>
+<button class="text-xs font-semibold text-outline hover:text-primary transition-colors">Reply</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Comment Input -->
+<footer class="absolute bottom-0 left-0 right-0 p-6 bg-surface-container-lowest border-t border-surface-container-high">
+<div class="flex items-start gap-4">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="portrait of a young professional with creative style and warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIv_pD0GqxWANQfltHd9L_N2GrpTcOH8EASe79sDoubZ6LR5SHtezcFCIoVSJ_V5BNx4Kcl8_zkYhHgB9Jeh8KfNf85wS5Bf8_Y5nrZ6AGC-TgPF6nql07koCsgo2kFSEbyl3l8d9q9r2zcwfYiD3HLRsYsoUrt5yx1v7OxXeFuzErbzRpkg4eOtUbc_br7IKtLqLP3jIscNgpTfHQEEnYjlFqKfp4x8HKvalE-mq-Bgve898jbonQ6QsM99WIO5KKQ2Ne786mSdlu"/>
+<div class="flex-1 bg-surface-container-low rounded-xl p-3 border border-transparent focus-within:border-primary-container focus-within:bg-surface-container-lowest transition-all group">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm resize-none placeholder-outline" placeholder="Write a comment..." rows="1"></textarea>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-surface-container-high/50">
+<div class="flex items-center gap-1">
+<button class="p-1.5 hover:bg-surface-container-highest rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">mood</span>
+</button>
+</div>
+<button class="px-4 py-1.5 bg-primary text-on-primary text-xs font-bold rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+              Comment
+            </button>
+</div>
+</div>
+</div>
+</footer>
+</aside>
+</body></html>

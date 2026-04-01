@@ -1,0 +1,237 @@
+<section class="issue-full-page">
+  <app-dashboard-sidebar [navItems]="navItems" />
+
+  <div class="issue-main-wrap">
+    <header class="issue-topbar">
+      <div class="crumbs">
+        <a routerLink="/issues">Issues</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <span>{{ detail().id }}</span>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="icon-btn" aria-label="Copy link">
+          <span class="material-symbols-outlined">link</span>
+        </button>
+        <button type="button" class="icon-btn" aria-label="Toggle side navigation">
+          <span class="material-symbols-outlined">side_navigation</span>
+        </button>
+        <button type="button" class="icon-btn" aria-label="More options">
+          <span class="material-symbols-outlined">more_vert</span>
+        </button>
+        <span class="top-divider" aria-hidden="true"></span>
+        <button type="button" class="complete-btn" aria-label="Mark issue complete">
+          <span class="material-symbols-outlined">check_circle</span>
+          Complete
+        </button>
+        <button type="button" class="profile-btn" aria-label="Open user profile">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfasiUa0CInkhA28cxE0epRVWLvaPAIeWfJi_5o-P_8oZ3GznG6f76P66VfHH-XazXukKRzsVhnQnznUZqebOssOvXVJbNqUqTMiNJUYRwgew8Qzyv_Rkv0q-DzCZbP0JBo-WgegiGPSvWfmEQqHlvRsf7rlQLWp4GXXLTw4zFAweHPHb1Ip_fFz_OqQgGu20ZrGZxt6K0E9lZLEl-ctBczrt9b4W0GZ2D1YOl7Hh2PodCr9ZkFLGioR2YsFh6JGzeDGshQvKkfm9h"
+            alt="User profile"
+          />
+        </button>
+      </div>
+    </header>
+
+    <main class="issue-canvas">
+      <article class="issue-card">
+        <section class="identity">
+          <div class="meta-row">
+            <span class="status-chip" [class]="'status-chip ' + detail().statusTone">
+              <span class="status-dot" aria-hidden="true"></span>
+              {{ detail().status }}
+            </span>
+            <span class="issue-id">#{{ detail().id }}</span>
+          </div>
+          <h1>{{ detail().title }}</h1>
+        </section>
+
+        <section class="property-grid">
+          <div class="property-cell">
+            <p>Assignee</p>
+            <div class="property-inline assignee-inline">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMcbmbr6Swmc778DUIvIsjGVZRW1HxthWe5LAd2Wc0ZjTlK8mKGyhXv8UvQj15VGKyHrF0MiDlMTtybyOyeOyCpfwhjbHzh1urim9SiT_kLxxVCeqK9nMQpP2eNO7rnaEkKGtTswVx6Ad1TdIhGGn7ihGHroCB03aHrtbVxwfNlHrMBRfP7HxvSLsUpy9JfPOH3MtK0h-EdEweVkEEHPuct1icLp7DCLZ32mPerhgKTrNbxu9SM_VtEs0sbtdTOAndZ8L6ZyrUl8YA"
+                alt="Assignee avatar"
+              />
+              <span>{{ detail().assignee }}</span>
+            </div>
+          </div>
+
+          <div class="property-cell">
+            <p>Priority</p>
+            <span class="priority-pill">
+              <span class="material-symbols-outlined">priority_high</span>
+              {{ detail().priority }}
+            </span>
+          </div>
+
+          <div class="property-cell">
+            <p>Due Date</p>
+            <span class="property-inline">
+              <span class="material-symbols-outlined">calendar_today</span>
+              {{ detail().dueDate }}
+            </span>
+          </div>
+
+          <div class="property-cell">
+            <p>Project</p>
+            <span class="property-inline">
+              <span class="project-dot" aria-hidden="true"></span>
+              {{ detail().project }}
+            </span>
+          </div>
+
+          <div class="labels">
+            <p>Labels</p>
+            <div>
+              @for (label of detail().labels; track label) {
+                <span>{{ label }}</span>
+              }
+            </div>
+          </div>
+
+          <div class="property-cell">
+            <p>Created</p>
+            <span class="created-text">Jan 15 by <strong>Ali</strong></span>
+          </div>
+        </section>
+
+        <section class="description">
+          <div class="section-head">
+            <h2>Description</h2>
+            <button type="button">Edit</button>
+          </div>
+
+          <div class="description-body">
+            <p>{{ detail().description }}</p>
+
+            <div class="code-block">
+              <div class="code-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+
+              <code>
+                <span class="kw">async function</span> <span class="fn">handleRequest</span>(req, res) &#123;<br />
+                <span class="cm">&nbsp;&nbsp;// Implement non-blocking logic</span><br />
+                <span class="kw">&nbsp;&nbsp;const</span> result = <span class="kw">await</span> engine.<span class="fn">processAsync</span>(req.data);<br />
+                <span class="kw">&nbsp;&nbsp;return</span> res.<span class="fn">status</span>(<span class="num">200</span>).<span class="fn">json</span>(result);<br />
+                &#125;
+              </code>
+            </div>
+
+            <p>Key goals include implementing a worker queue and migrating to gRPC for internal service communication.</p>
+          </div>
+        </section>
+
+        <section class="attachments">
+          <h2>Attachments</h2>
+          <div class="attachment-grid">
+            <button type="button" class="preview-tile">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfa-hhhPB_9oUPWLybZgNhMIe4tvNthPgDK38IAaPl1SMEjBRt4DXF4qFGt08Y5jmgxzWz91fzvEJhWoRMIygZHBPcgBun4mgeu_dEWl32xyFgGUXSDqPx81Sje8tiQGF2Saki6N1mtEVJBzCosOzX-QKrtFayd9oKMyJCmEO7OrFGmD43vkA3hUOzJJx0AIcDc_BRZE6dOVd6gGaaOs-_5k-1DOA2Thxg6zQUErCMMhnb0kCDma4GMSokHRxc-DNw9hfKrMxta4jz"
+                alt="Architecture diagram"
+              />
+              <span class="download-overlay"><span class="material-symbols-outlined">download</span></span>
+            </button>
+
+            <button type="button" class="preview-tile">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlCIB36i3HWba3nFET-1gHUcJ6DTL8TOR8xitwNz4aXrb6uCmAt3VdpHtb2JHCS4upZDE8P25C-MyXdlIRiQkTATW0k0jTJh_Bhu24P5jj69PDcdkMkKApx7cnXoY5e68w1zeNpNQvHNs73rG79i5wOBNYfTQf4unSEc_fURKDqsGJdITx-glz9Tv43BxzgZtd61lSibE-SAOBKIUfqmwCKMpwPRs6mfKYqQ9O-d_cnRzK4E21XFySK2a6qdNfRvaGCqH8qp40rcdo"
+                alt="Performance chart"
+              />
+              <span class="download-overlay"><span class="material-symbols-outlined">download</span></span>
+            </button>
+
+            <button type="button" class="upload-tile">
+              <span class="material-symbols-outlined">add</span>
+              <span>Upload</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="subtasks">
+          <div class="section-head">
+            <h2>Subtasks</h2>
+            <span>3/5 Complete</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span class="progress-value"></span>
+          </div>
+
+          <ul>
+            <li class="done">
+              <span class="check-box"><span class="material-symbols-outlined">check</span></span>
+              <span>Define new API schema</span>
+            </li>
+            <li class="done">
+              <span class="check-box"><span class="material-symbols-outlined">check</span></span>
+              <span>Setup staging environment</span>
+            </li>
+            <li>
+              <span class="check-box"></span>
+              <span>Implement Redis caching layer</span>
+            </li>
+            <li class="done">
+              <span class="check-box"><span class="material-symbols-outlined">check</span></span>
+              <span>Benchmark current system</span>
+            </li>
+            <li>
+              <span class="check-box"></span>
+              <span>Final security audit</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="comments">
+          <div class="comment-tabs">
+            <button type="button" class="active">Comments (12)</button>
+            <button type="button">Activity</button>
+          </div>
+
+          <div class="comment-list">
+            @for (comment of detail().comments; track comment.author + comment.timeAgo) {
+              <article>
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdPP9YGJRKlc1CtmoxDWVZ7pGhDeWEhQnHwnRNFRxA_l9D9uA39OrvdpsaaNHOfOjyft77xWiYF8_-EPY59XA2waKlt4J8_2wsyxpmtKSySsAZdtGkGfcK1I_3XOYnecKF-hpGQow6X-dYFBCk96zIp3pJ47zTq1Z28d_3s_IUGt3XIChKkN_J7ZEk2wXSjLzfPZJ4MI-hmUFB6zDllHBwSxu8DwZ6nQRMt6m5DfWSqjoJ4zN1euBChQlwGSztntHM-t5EewIATd3K"
+                  alt="Comment author avatar"
+                />
+                <div class="comment-head">
+                  <strong>{{ comment.author }}</strong>
+                  <span>{{ comment.timeAgo }}</span>
+                </div>
+                <p>{{ comment.message }}</p>
+                <div class="comment-actions">
+                  <button type="button">Reply</button>
+                  <button type="button">React</button>
+                </div>
+              </article>
+            }
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="sticky-comment-bar">
+      <div class="sticky-inner">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCspJIieoht7pWRc3lqT4DpLBwYzurPQ1JIBTKY-hXByA4ANGJ64E6b-4RJL3QJWZbrdyZciZb4DrWU1ZoEvSQJV4WFqcLAtMPZeIY_tzR8PqhDlVSyzrIaDleCqhCJhGAcIrnbVHyxAPv8k-PBVsL8ojopJnsvOqCKrFnjSQB0GdFiJ5W6G-ZTAg2w-fVuomA14ouwmvJ0hdKm4RP8Z8w4O41zuYYHxJqvh4BFOoH882BIKd7gCiJHhNCWaRTH8UDSBkXXVJhdIlh8"
+          alt="Current user profile"
+        />
+
+        <div class="composer-wrap">
+          <input type="text" placeholder="Add a comment... (use @ to mention people)" />
+          <div class="composer-icons">
+            <button type="button" aria-label="Mention"><span class="material-symbols-outlined">alternate_email</span></button>
+            <button type="button" aria-label="Emoji"><span class="material-symbols-outlined">sentiment_satisfied</span></button>
+            <button type="button" aria-label="Attach file"><span class="material-symbols-outlined">attach_file</span></button>
+          </div>
+        </div>
+
+        <button type="button" class="send-btn" aria-label="Send comment">
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+</section>

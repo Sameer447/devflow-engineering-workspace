@@ -1,0 +1,22 @@
+<section class="issues-page">
+  <app-dashboard-sidebar [navItems]="navItems" />
+
+  <div class="issues-main-wrap">
+    <app-issues-topbar />
+
+    <main class="issues-main-content">
+      <div class="issues-content-inner">
+        <app-issues-table [issues]="issues" (issueSelected)="openIssueDetails($event)" />
+        <app-issues-metrics [metrics]="metrics" />
+      </div>
+    </main>
+  </div>
+
+  @if (selectedIssueDetail(); as detail) {
+    <app-issue-detail-drawer
+      [detail]="detail"
+      (closeRequested)="closeIssueDetails()"
+      (expandRequested)="openFullIssueDetails()"
+    />
+  }
+</section>

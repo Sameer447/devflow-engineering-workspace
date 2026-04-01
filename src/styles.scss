@@ -1,1 +1,206 @@
-/* You can add global styles to this file, and also import other style files */
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$violet-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Inter,
+      density: 0,
+    )
+  );
+}
+
+:root,
+:root[data-theme='light'] {
+  --font-sans: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
+
+  --color-primary: #3b309e;
+  --color-primary-container: #534ab7;
+  --color-on-primary: #ffffff;
+
+  --color-surface: #f9f9fd;
+  --color-surface-container-low: #f3f3f7;
+  --color-surface-container: #ededf2;
+  --color-surface-container-high: #e8e8ee;
+  --color-surface-container-highest: #e2e2e6;
+  --color-surface-container-lowest: #ffffff;
+
+  --color-on-surface: #1a1c1f;
+  --color-on-surface-muted: #4f5563;
+  --color-secondary: #5c5c7a;
+  --color-outline: #787584;
+  --color-outline-variant: #c8c4d5;
+  --color-tertiary: #683500;
+  --color-tertiary-fixed-dim: #ffb77d;
+  --color-outline-ghost: rgba(38, 41, 49, 0.2);
+
+  --color-success: #0c7a43;
+  --color-error: #ad1e3f;
+  --color-warning: #683500;
+
+  --gradient-primary: linear-gradient(135deg, #3b309e 0%, #534ab7 100%);
+  --ambient-shadow:
+    0 4px 6px -1px rgba(59, 48, 158, 0.04),
+    0 10px 15px -3px rgba(59, 48, 158, 0.08);
+
+  --mat-sys-primary: var(--color-primary);
+  --mat-sys-on-primary: var(--color-on-primary);
+  --mat-sys-surface: var(--color-surface);
+  --mat-sys-surface-container: var(--color-surface-container);
+  --mat-sys-on-surface: var(--color-on-surface);
+  --mat-sys-outline-variant: color-mix(in srgb, var(--color-on-surface) 20%, transparent);
+}
+
+:root[data-theme='dark'] {
+  --color-primary: #9b92ff;
+  --color-primary-container: #776de2;
+  --color-on-primary: #100f2e;
+
+  --color-surface: #14151b;
+  --color-surface-container-low: #1a1c24;
+  --color-surface-container: #222532;
+  --color-surface-container-high: #2a2f3f;
+  --color-surface-container-highest: #343a4c;
+  --color-surface-container-lowest: #191d2a;
+
+  --color-on-surface: #ebeefb;
+  --color-on-surface-muted: #b7bed5;
+  --color-secondary: #acb4cf;
+  --color-outline: #9ca4bf;
+  --color-outline-variant: #4a526f;
+  --color-tertiary: #c89258;
+  --color-tertiary-fixed-dim: #e4b489;
+  --color-outline-ghost: rgba(190, 198, 229, 0.28);
+
+  --color-success: #4fd899;
+  --color-error: #ff6f9a;
+  --color-warning: #d9a86a;
+
+  --gradient-primary: linear-gradient(135deg, #6558d7 0%, #8c80f0 100%);
+  --ambient-shadow:
+    0 6px 10px -3px rgba(23, 23, 48, 0.4),
+    0 16px 24px -8px rgba(7, 7, 18, 0.45);
+
+  --mat-sys-primary: var(--color-primary);
+  --mat-sys-on-primary: var(--color-on-primary);
+  --mat-sys-surface: var(--color-surface);
+  --mat-sys-surface-container: var(--color-surface-container);
+  --mat-sys-on-surface: var(--color-on-surface);
+  --mat-sys-outline-variant: color-mix(in srgb, var(--color-on-surface) 24%, transparent);
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--color-primary) 18%, transparent) 0%, transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in srgb, var(--color-primary-container) 14%, transparent) 0%, transparent 42%),
+    var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  line-height: 1;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 75%, white 25%);
+  outline-offset: 2px;
+}
+
+/* Shared auth layout primitives for current and upcoming auth pages. */
+.auth-page {
+  min-height: 100dvh;
+  display: flex;
+}
+
+.auth-left {
+  width: 50%;
+  min-height: 100dvh;
+  display: none;
+}
+
+.auth-right {
+  flex: 1;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.auth-form-shell {
+  width: min(100%, 400px);
+}
+
+@media (min-width: 961px) {
+  .auth-left {
+    display: flex;
+  }
+
+  .auth-right {
+    width: 50%;
+    padding: 3rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .auth-page {
+    display: block;
+  }
+
+  .auth-right {
+    min-height: 100dvh;
+    align-items: flex-start;
+    padding: 1.5rem 1.5rem 2rem;
+  }
+
+  .auth-form-shell {
+    width: min(100%, 30rem);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 599px) {
+  .auth-right {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .auth-form-shell {
+    width: 100%;
+  }
+}

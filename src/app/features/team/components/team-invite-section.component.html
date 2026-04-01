@@ -1,0 +1,52 @@
+<section class="invite-card">
+  <h3>Invite new members</h3>
+
+  <div class="form-row">
+    <label>
+      <span>Email address</span>
+      <input type="email" placeholder="colleague@company.com" />
+    </label>
+
+    <label class="role-field">
+      <span>Role</span>
+      <select>
+        <option>Member</option>
+        <option>Admin</option>
+        <option>Owner</option>
+        <option>Viewer</option>
+      </select>
+    </label>
+
+    <button type="button" class="send-btn">Send invite</button>
+  </div>
+
+  <div class="invite-link-row">
+    <div class="meta">
+      <div class="icon-wrap">
+        <span class="material-symbols-outlined">link</span>
+      </div>
+      <div>
+        <p>Share invite link</p>
+        <small>Anyone with the link can request to join</small>
+      </div>
+    </div>
+
+    <button type="button" class="switch" aria-label="Toggle invite link">
+      <span></span>
+    </button>
+  </div>
+
+  <div class="pending-row">
+    <div class="meta">
+      <div class="mail-icon">
+        <span class="material-symbols-outlined">mail</span>
+      </div>
+      <div>
+        <p>{{ pendingInvite().email }}</p>
+        <small>{{ pendingInvite().role }} • Sent {{ pendingInvite().sentAgo }}</small>
+      </div>
+    </div>
+
+    <button type="button" class="revoke-btn">Revoke</button>
+  </div>
+</section>

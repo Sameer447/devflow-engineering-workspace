@@ -1,0 +1,82 @@
+:host {
+  display: block;
+}
+
+.permissions-wrap {
+  margin-top: 3rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-head h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.section-head span {
+  color: var(--color-outline);
+}
+
+.table-wrap {
+  background: color-mix(in srgb, var(--color-surface-container-low) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 34%, transparent);
+  border-radius: 0.875rem;
+  padding: 0.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.75rem;
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 0.9rem 1rem;
+}
+
+thead th {
+  color: var(--color-outline);
+  font-weight: 700;
+}
+
+tbody tr + tr {
+  border-top: 1px solid color-mix(in srgb, var(--color-outline-variant) 34%, transparent);
+}
+
+tbody td:first-child {
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.allowed {
+  color: #10b981;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 500,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.denied {
+  color: color-mix(in srgb, var(--color-outline) 45%, transparent);
+}
+
+@media (max-width: 960px) {
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 40rem;
+  }
+}

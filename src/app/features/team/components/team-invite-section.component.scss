@@ -1,0 +1,184 @@
+:host {
+  display: block;
+}
+
+.invite-card {
+  background: var(--color-surface-container-lowest);
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 48%, transparent);
+  border-radius: 0.875rem;
+  box-shadow: var(--ambient-shadow);
+  padding: 1.5rem;
+}
+
+.invite-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 8.75rem auto;
+  align-items: end;
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+}
+
+label > span {
+  margin-left: 0.25rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-outline);
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 2.625rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+  padding: 0 0.9rem;
+}
+
+.send-btn {
+  min-height: 2.625rem;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0 1.5rem;
+  background: var(--color-primary-container);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  opacity: 0.92;
+}
+
+.invite-link-row {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-outline-variant) 40%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon-wrap,
+.mail-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+}
+
+.icon-wrap {
+  background: var(--color-surface-container-low);
+  color: var(--color-primary);
+}
+
+.mail-icon {
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-surface-container-high);
+  color: var(--color-outline);
+}
+
+.meta p {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.meta small {
+  font-size: 0.75rem;
+  color: var(--color-outline);
+}
+
+.switch {
+  width: 2.5rem;
+  height: 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-surface-container-high);
+  position: relative;
+  cursor: pointer;
+}
+
+.switch span {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: #fff;
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.pending-row {
+  margin-top: 1.5rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--color-surface-container-low) 80%, transparent);
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.revoke-btn {
+  border: 0;
+  background: transparent;
+  color: var(--color-error);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.revoke-btn:hover {
+  background: color-mix(in srgb, var(--color-error) 10%, transparent);
+}
+
+@media (max-width: 860px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .role-field {
+    max-width: 15rem;
+  }
+
+  .send-btn {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 599px) {
+  .invite-card {
+    padding: 1rem;
+  }
+
+  .invite-link-row,
+  .pending-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

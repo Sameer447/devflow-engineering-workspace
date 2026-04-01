@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevFlow - Task DF-42</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e2e6; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c8c4d5; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "tertiary-fixed-dim": "#ffb77d",
+                "tertiary-fixed": "#ffdcc3",
+                "tertiary": "#683500",
+                "primary-container": "#534ab7",
+                "tertiary-container": "#8a4900",
+                "secondary": "#5c5c7a",
+                "inverse-primary": "#c5c0ff",
+                "on-tertiary-fixed": "#2f1500",
+                "surface-container": "#ededf1",
+                "primary-fixed": "#e3dfff",
+                "on-tertiary-fixed-variant": "#6e3900",
+                "error": "#ba1a1a",
+                "surface-tint": "#584fbc",
+                "outline-variant": "#c8c4d5",
+                "primary": "#3b309e",
+                "background": "#f9f9fd",
+                "on-secondary-fixed-variant": "#444461",
+                "on-secondary-container": "#60607e",
+                "on-surface-variant": "#474553",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#f0f0f4",
+                "surface-container-highest": "#e2e2e6",
+                "surface-bright": "#f9f9fd",
+                "inverse-surface": "#2e3034",
+                "outline": "#787584",
+                "surface-variant": "#e2e2e6",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed": "#181933",
+                "on-secondary": "#ffffff",
+                "on-background": "#1a1c1f",
+                "surface-dim": "#d9dade",
+                "secondary-fixed-dim": "#c5c3e6",
+                "on-error-container": "#93000a",
+                "secondary-fixed": "#e1dfff",
+                "primary-fixed-dim": "#c5c0ff",
+                "on-tertiary-container": "#ffc69a",
+                "secondary-container": "#dedcff",
+                "surface-container-low": "#f3f3f7",
+                "surface": "#f9f9fd",
+                "on-primary-fixed": "#140067",
+                "surface-container-high": "#e8e8ec",
+                "on-surface": "#1a1c1f",
+                "on-primary-fixed-variant": "#3f35a3",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#d1ccff",
+                "on-error": "#ffffff"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="w-60 h-screen fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-full border-r border-transparent z-50">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">terminal</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-indigo-900 dark:text-indigo-100 leading-tight">DevFlow</h1>
+<p class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Engineering Workspace</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-sm font-medium">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-200 text-indigo-700 dark:text-indigo-400 font-semibold hover:bg-slate-200 dark:hover:bg-slate-800 bg-slate-200/50" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment_turned_in</span>
+<span class="text-sm font-medium">Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Team</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 bg-primary text-white rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Task
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-60 min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-15rem)] h-16 bg-white dark:bg-slate-950 flex justify-between items-center px-6 z-40 border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
+<span>Issues</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 font-semibold">DF-42</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">link</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">side_navigation</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<div class="w-px h-6 bg-slate-200 mx-1"></div>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-surface-container-high text-on-surface rounded-lg text-sm font-semibold hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Complete
+                </button>
+<button class="p-1">
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200" data-alt="professional headshot of a software engineer with glasses and a friendly smile in a bright office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfasiUa0CInkhA28cxE0epRVWLvaPAIeWfJi_5o-P_8oZ3GznG6f76P66VfHH-XazXukKRzsVhnQnznUZqebOssOvXVJbNqUqTMiNJUYRwgew8Qzyv_Rkv0q-DzCZbP0JBo-WgegiGPSvWfmEQqHlvRsf7rlQLWp4GXXLTw4zFAweHPHb1Ip_fFz_OqQgGu20ZrGZxt6K0E9lZLEl-ctBczrt9b4W0GZ2D1YOl7Hh2PodCr9ZkFLGioR2YsFh6JGzeDGshQvKkfm9h"/>
+</button>
+</div>
+</header>
+<!-- Task Content Canvas -->
+<div class="pt-24 pb-32 px-6 flex justify-center">
+<div class="w-full max-w-[800px]">
+<!-- Main Task Card -->
+<div class="bg-white rounded-[16px] border border-slate-100 shadow-sm overflow-hidden">
+<!-- Section 1: Header & Title -->
+<div class="p-8 pb-4">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-[11px] font-bold rounded-full flex items-center gap-1.5 uppercase tracking-wider border border-indigo-100">
+<span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                                In Progress
+                            </span>
+<span class="mono text-sm text-slate-400 font-medium">#DF-42</span>
+</div>
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight leading-tight hover:bg-slate-50 px-2 -mx-2 py-1 rounded-lg cursor-text transition-colors">
+                            Re-architect the core API for performance
+                        </h2>
+</div>
+<!-- Section 2: Properties Grid -->
+<div class="px-8 mb-8">
+<div class="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-8 p-6 bg-[#F8F8FC] rounded-[10px] border border-slate-50">
+<div>
+<p class="text-[11px] text-slate-400 uppercase font-bold tracking-widest mb-2">Assignee</p>
+<div class="flex items-center gap-2 group cursor-pointer">
+<img alt="Sameer Shoukat" class="w-6 h-6 rounded-full ring-2 ring-white" data-alt="minimalist avatar of a person with a beard on a blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMcbmbr6Swmc778DUIvIsjGVZRW1HxthWe5LAd2Wc0ZjTlK8mKGyhXv8UvQj15VGKyHrF0MiDlMTtybyOyeOyCpfwhjbHzh1urim9SiT_kLxxVCeqK9nMQpP2eNO7rnaEkKGtTswVx6Ad1TdIhGGn7ihGHroCB03aHrtbVxwfNlHrMBRfP7HxvSLsUpy9JfPOH3MtK0h-EdEweVkEEHPuct1icLp7DCLZ32mPerhgKTrNbxu9SM_VtEs0sbtdTOAndZ8L6ZyrUl8YA"/>
+<span class="text-sm font-semibold text-slate-700 group-hover:text-primary transition-colors">Sameer Shoukat</span>
+</div>
+</div>
+<div>
+<p class="text-[11px] text-slate-400 uppercase font-bold tracking-widest mb-2">Priority</p>
+<span class="px-2.5 py-1 bg-error-container/40 text-error text-[12px] font-bold rounded-lg flex items-center gap-1.5 w-fit">
+<span class="material-symbols-outlined text-[14px]">priority_high</span>
+                                    High
+                                </span>
+</div>
+<div>
+<p class="text-[11px] text-slate-400 uppercase font-bold tracking-widest mb-2">Due Date</p>
+<div class="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
+<span class="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
+                                    Mar 31, 2024
+                                </div>
+</div>
+<div>
+<p class="text-[11px] text-slate-400 uppercase font-bold tracking-widest mb-2">Project</p>
+<span class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    Core Engine
+                                </span>
+</div>
+<div>
+<p class="text-[11px] text-slate-400 uppercase font-bold tracking-widest mb-2">Labels</p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-slate-200 text-slate-600 text-[10px] font-bold rounded uppercase">Refactor</span>
+<span class="px-2 py-0.5 bg-slate-200 text-slate-600 text-[10px] font-bold rounded uppercase">Backend</span>
+</div>
+</div>
+<div>
+<p class="text-[11px] text-slate-400 uppercase font-bold tracking-widest mb-2">Created</p>
+<p class="text-sm font-medium text-slate-500">Jan 15 by <span class="text-slate-700 font-semibold">Ali</span></p>
+</div>
+</div>
+</div>
+<!-- Section 3: Description -->
+<div class="px-8 mb-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Description</h3>
+<button class="text-primary text-xs font-bold hover:underline">Edit</button>
+</div>
+<div class="prose prose-slate max-w-none text-on-surface-variant leading-relaxed space-y-4">
+<p>We need to refactor the current API gateway to reduce latency. The current implementation uses synchronous blocking calls which are causing bottlenecks during peak traffic.</p>
+<div class="bg-slate-900 rounded-xl p-4 mono text-xs text-indigo-200 border border-slate-800 overflow-x-auto">
+<div class="flex gap-2 mb-2 opacity-40">
+<div class="w-2 h-2 rounded-full bg-red-500"></div>
+<div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+</div>
+<code>
+<span class="text-pink-400">async function</span> <span class="text-blue-400">handleRequest</span>(req, res) {<br/>
+                                      <span class="text-slate-500">// Implement non-blocking logic</span><br/>
+                                      <span class="text-pink-400">const</span> result = <span class="text-pink-400">await</span> engine.<span class="text-blue-400">processAsync</span>(req.data);<br/>
+                                      <span class="text-pink-400">return</span> res.<span class="text-blue-400">status</span>(<span class="text-green-400">200</span>).<span class="text-blue-400">json</span>(result);<br/>
+                                    }
+                                </code>
+</div>
+<p>Key goals include implementing a worker queue and migrating to gRPC for internal service communication.</p>
+</div>
+</div>
+<!-- Section 4: Attachments -->
+<div class="px-8 mb-10">
+<h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest mb-4">Attachments</h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="group relative rounded-xl overflow-hidden border border-slate-100 aspect-video bg-slate-50 cursor-pointer">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="clean digital architectural diagram showing api gateway flow with blue and white accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfa-hhhPB_9oUPWLybZgNhMIe4tvNthPgDK38IAaPl1SMEjBRt4DXF4qFGt08Y5jmgxzWz91fzvEJhWoRMIygZHBPcgBun4mgeu_dEWl32xyFgGUXSDqPx81Sje8tiQGF2Saki6N1mtEVJBzCosOzX-QKrtFayd9oKMyJCmEO7OrFGmD43vkA3hUOzJJx0AIcDc_BRZE6dOVd6gGaaOs-_5k-1DOA2Thxg6zQUErCMMhnb0kCDma4GMSokHRxc-DNw9hfKrMxta4jz"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">download</span>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden border border-slate-100 aspect-video bg-slate-50 cursor-pointer">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="bar chart showing performance metrics with green and purple bars on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlCIB36i3HWba3nFET-1gHUcJ6DTL8TOR8xitwNz4aXrb6uCmAt3VdpHtb2JHCS4upZDE8P25C-MyXdlIRiQkTATW0k0jTJh_Bhu24P5jj69PDcdkMkKApx7cnXoY5e68w1zeNpNQvHNs73rG79i5wOBNYfTQf4unSEc_fURKDqsGJdITx-glz9Tv43BxzgZtd61lSibE-SAOBKIUfqmwCKMpwPRs6mfKYqQ9O-d_cnRzK4E21XFySK2a6qdNfRvaGCqH8qp40rcdo"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">download</span>
+</div>
+</div>
+<button class="border-2 border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center gap-1 text-slate-400 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="text-[10px] font-bold uppercase">Upload</span>
+</button>
+</div>
+</div>
+<!-- Section 5: Subtasks -->
+<div class="px-8 mb-10">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Subtasks</h3>
+<span class="text-xs font-bold text-slate-400">3/5 Complete</span>
+</div>
+<div class="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[60%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-5 h-5 rounded-md border-2 border-indigo-500 flex items-center justify-center bg-indigo-500">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+</div>
+<span class="text-sm font-medium text-slate-400 line-through">Define new API schema</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-5 h-5 rounded-md border-2 border-indigo-500 flex items-center justify-center bg-indigo-500">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+</div>
+<span class="text-sm font-medium text-slate-400 line-through">Setup staging environment</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-5 h-5 rounded-md border-2 border-slate-300 flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<span class="text-sm font-medium text-slate-700">Implement Redis caching layer</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-5 h-5 rounded-md border-2 border-indigo-500 flex items-center justify-center bg-indigo-500">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+</div>
+<span class="text-sm font-medium text-slate-400 line-through">Benchmark current system</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-5 h-5 rounded-md border-2 border-slate-300 flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<span class="text-sm font-medium text-slate-700">Final security audit</span>
+</label>
+</div>
+</div>
+<!-- Section 6: Activity & Comments Tabs -->
+<div class="border-t border-slate-100">
+<div class="flex gap-8 px-8 border-b border-slate-100">
+<button class="py-4 text-sm font-bold text-primary border-b-2 border-primary">Comments (12)</button>
+<button class="py-4 text-sm font-bold text-slate-400 hover:text-slate-600 transition-colors">Activity</button>
+</div>
+<div class="p-8 space-y-6">
+<!-- Comment 1 -->
+<div class="flex gap-4">
+<img class="w-8 h-8 rounded-full" data-alt="avatar of a developer with a bright orange background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdPP9YGJRKlc1CtmoxDWVZ7pGhDeWEhQnHwnRNFRxA_l9D9uA39OrvdpsaaNHOfOjyft77xWiYF8_-EPY59XA2waKlt4J8_2wsyxpmtKSySsAZdtGkGfcK1I_3XOYnecKF-hpGQow6X-dYFBCk96zIp3pJ47zTq1Z28d_3s_IUGt3XIChKkN_J7ZEk2wXSjLzfPZJ4MI-hmUFB6zDllHBwSxu8DwZ6nQRMt6m5DfWSqjoJ4zN1euBChQlwGSztntHM-t5EewIATd3K"/>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-sm font-bold text-on-surface">Ali</span>
+<span class="text-[10px] text-slate-400 font-medium">2 hours ago</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none text-sm text-on-surface-variant leading-relaxed shadow-sm">
+                                        I've uploaded the initial benchmarks. We are seeing a 40% improvement in P99 latency with the new async handler.
+                                    </div>
+<div class="flex items-center gap-4 mt-2 px-1">
+<button class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-primary">Reply</button>
+<button class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-primary">React</button>
+</div>
+</div>
+</div>
+<!-- Activity Timeline Entry -->
+<div class="flex items-start gap-4 ml-4">
+<div class="w-8 flex justify-center py-2">
+<div class="w-0.5 h-full bg-slate-100"></div>
+</div>
+<div class="flex items-center gap-2 text-[11px] text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[14px] text-indigo-400">update</span>
+<span class="text-slate-700 font-bold">Sameer Shoukat</span> moved this to <span class="text-indigo-600 font-bold">In Progress</span>
+<span class="mx-1">•</span>
+<span>Jan 18, 10:45 AM</span>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-4">
+<img class="w-8 h-8 rounded-full" data-alt="avatar of sameer with a dark blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgt2X1aqRced_LtVT6V87NmgIkXP_0EFgqwlZxAKIqfRr6ouBuOUmg89zW_Jtb8pyy4niOiiCJ9ztVtNghFL3gQDzC1s0iCkHIt4DSzDVveZjmuaOPL3uxboEkaY8AHLHPivWSYSkBNUY5yxn6pIT0dr7iAR-UhICmVwqFF6aWUPg900aBQVJEsES-KgYlf8GPCEPkJ2or0GVq08_I2B1gQ0NfQ34dZNcywKe6KLBTE0DWbl9KZqHFpwGWdOEYrqrY1RHY5d2S8fVm"/>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-sm font-bold text-on-surface">Sameer Shoukat</span>
+<span class="text-[10px] text-slate-400 font-medium">15 mins ago</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none text-sm text-on-surface-variant leading-relaxed shadow-sm border border-indigo-100/50">
+                                        Great work <span class="text-primary font-bold">@Ali</span>. Can we also look into the database pool size? I think we might need to increase it for the new throughput.
+                                    </div>
+<div class="flex items-center gap-4 mt-2 px-1">
+<button class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-primary">Reply</button>
+<button class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-primary">React</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Comment Input -->
+<div class="fixed bottom-0 right-0 w-[calc(100%-15rem)] bg-white/80 backdrop-blur-md border-t border-slate-100 px-6 py-4 flex justify-center z-40">
+<div class="w-full max-w-[800px] flex gap-4 items-center">
+<img class="w-8 h-8 rounded-full hidden sm:block" data-alt="user's own profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCspJIieoht7pWRc3lqT4DpLBwYzurPQ1JIBTKY-hXByA4ANGJ64E6b-4RJL3QJWZbrdyZciZb4DrWU1ZoEvSQJV4WFqcLAtMPZeIY_tzR8PqhDlVSyzrIaDleCqhCJhGAcIrnbVHyxAPv8k-PBVsL8ojopJnsvOqCKrFnjSQB0GdFiJ5W6G-ZTAg2w-fVuomA14ouwmvJ0hdKm4RP8Z8w4O41zuYYHxJqvh4BFOoH882BIKd7gCiJHhNCWaRTH8UDSBkXXVJhdIlh8"/>
+<div class="flex-1 relative">
+<input class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 placeholder-slate-400" placeholder="Add a comment... (use @ to mention people)" type="text"/>
+<div class="absolute right-3 top-2.5 flex items-center gap-2 text-slate-400">
+<button class="material-symbols-outlined text-[20px] hover:text-primary transition-colors">alternate_email</button>
+<button class="material-symbols-outlined text-[20px] hover:text-primary transition-colors">sentiment_satisfied</button>
+<button class="material-symbols-outlined text-[20px] hover:text-primary transition-colors">attach_file</button>
+</div>
+</div>
+<button class="bg-primary text-white p-2.5 rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

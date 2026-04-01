@@ -1,0 +1,24 @@
+<section class="dashboard-page">
+  <app-dashboard-sidebar [navItems]="navItems" />
+
+  <div class="dashboard-main-wrap">
+    <app-dashboard-topbar />
+
+    <main class="dashboard-main-content">
+      <app-dashboard-kpi-metrics [metrics]="metrics" />
+
+      <section class="split-layout">
+        <div class="split-left">
+          <app-dashboard-task-list [tasks]="tasks" />
+        </div>
+
+        <div class="split-right">
+          <app-dashboard-activity-feed [activities]="activities" />
+          <app-dashboard-projects-overview [projects]="projects" />
+        </div>
+      </section>
+
+      <app-dashboard-board-preview [columns]="boardColumns" />
+    </main>
+  </div>
+</section>

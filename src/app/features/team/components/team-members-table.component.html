@@ -1,0 +1,62 @@
+<section class="members-card">
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Role</th>
+        <th>Joined</th>
+        <th>Last active</th>
+        <th class="align-right">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (member of members(); track member.email) {
+        <tr>
+          <td>
+            <div class="user-cell">
+              @if (member.avatarUrl) {
+                <img [src]="member.avatarUrl" [alt]="member.name + ' avatar'" />
+              } @else {
+                <div class="initials" [class.owner]="member.role === 'Owner'">{{ member.initials }}</div>
+              }
+
+              <div>
+                <p>
+                  {{ member.name }}
+                  @if (member.isCurrentUser) {
+                    <span>(you)</span>
+                  }
+                </p>
+                <small>{{ member.email }}</small>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <span class="role-chip" [class]="'role-chip ' + roleTone(member.role)">{{ member.role }}</span>
+          </td>
+
+          <td class="mono">{{ member.joinedAt }}</td>
+
+          <td>
+            @if (member.online) {
+              <div class="online-cell">
+                <span class="dot" aria-hidden="true"></span>
+                <span>{{ member.lastActive }}</span>
+              </div>
+            } @else {
+              <span class="offline-text">{{ member.lastActive }}</span>
+            }
+          </td>
+
+          <td class="align-right">
+            <button type="button" aria-label="Open row actions">
+              <span class="material-symbols-outlined">more_vert</span>
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

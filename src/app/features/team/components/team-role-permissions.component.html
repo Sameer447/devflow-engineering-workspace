@@ -1,0 +1,55 @@
+<section class="permissions-wrap">
+  <div class="section-head">
+    <h3>Role permissions</h3>
+    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Viewer</th>
+          <th>Member</th>
+          <th>Admin</th>
+          <th>Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track row.action) {
+          <tr>
+            <td>{{ row.action }}</td>
+            <td>
+              @if (row.viewer) {
+                <span class="material-symbols-outlined allowed">check_circle</span>
+              } @else {
+                <span class="material-symbols-outlined denied">block</span>
+              }
+            </td>
+            <td>
+              @if (row.member) {
+                <span class="material-symbols-outlined allowed">check_circle</span>
+              } @else {
+                <span class="material-symbols-outlined denied">block</span>
+              }
+            </td>
+            <td>
+              @if (row.admin) {
+                <span class="material-symbols-outlined allowed">check_circle</span>
+              } @else {
+                <span class="material-symbols-outlined denied">block</span>
+              }
+            </td>
+            <td>
+              @if (row.owner) {
+                <span class="material-symbols-outlined allowed">check_circle</span>
+              } @else {
+                <span class="material-symbols-outlined denied">block</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

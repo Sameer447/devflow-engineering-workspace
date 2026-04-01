@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevFlow Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c8c4d5",
+              "surface-container-high": "#e8e8ec",
+              "on-surface": "#1a1c1f",
+              "secondary": "#5c5c7a",
+              "secondary-container": "#dedcff",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#c5c0ff",
+              "tertiary-container": "#8a4900",
+              "on-secondary-fixed-variant": "#444461",
+              "on-secondary-container": "#60607e",
+              "surface-dim": "#d9dade",
+              "secondary-fixed-dim": "#c5c3e6",
+              "on-background": "#1a1c1f",
+              "on-tertiary-container": "#ffc69a",
+              "on-surface-variant": "#474553",
+              "primary-container": "#534ab7",
+              "surface-variant": "#e2e2e6",
+              "surface-tint": "#584fbc",
+              "inverse-surface": "#2e3034",
+              "primary": "#3b309e",
+              "surface-bright": "#f9f9fd",
+              "outline": "#787584",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#ededf1",
+              "surface-container-lowest": "#ffffff",
+              "background": "#f9f9fd",
+              "surface": "#f9f9fd",
+              "primary-fixed": "#e3dfff",
+              "inverse-on-surface": "#f0f0f4",
+              "tertiary-fixed-dim": "#ffb77d",
+              "tertiary": "#683500",
+              "on-tertiary-fixed": "#2f1500",
+              "on-primary-fixed-variant": "#3f35a3",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#d1ccff",
+              "on-tertiary-fixed-variant": "#6e3900",
+              "error-container": "#ffdad6",
+              "primary-fixed-dim": "#c5c0ff",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#140067",
+              "on-secondary-fixed": "#181933",
+              "surface-container-low": "#f3f3f7",
+              "secondary-fixed": "#e1dfff",
+              "tertiary-fixed": "#ffdcc3",
+              "surface-container-highest": "#e2e2e6",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .sparkline-gradient {
+            fill: url(#sparkline-fill);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (JSON Derived) -->
+<aside class="w-60 h-screen fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 border-none flex flex-col py-6 px-4 z-50">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 bg-indigo-700 rounded-lg flex items-center justify-center text-white font-bold">DF</div>
+<div>
+<h1 class="font-['Inter'] text-xl font-bold text-indigo-700 dark:text-indigo-300 tracking-tighter">DevFlow</h1>
+<p class="text-[10px] text-slate-500 font-mono">V2.4.0</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-3 py-2.5 px-3 rounded-xl bg-white/50 dark:bg-slate-800/50 text-indigo-700 dark:text-indigo-300 font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">bug_report</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Issues</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">view_kanban</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Board</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">reorder</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Sprint</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Reports</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3 px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional male portrait with neutral background and soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTWvjd7aSz323huSEtoQ7QOUEjk-EIl3uTa5cDPMBVXUN7nuHbgW5wc9LrcnGtXxNEe8l5MnF7OFsHtuHd4nA9GKOOnm1DVRYi6PzWbxSIl6sNOscQgIJsyKETnHNAWqi0o2LKuAlO3q8zyM70o7iH9XZjynpwVGEGLtHD6Ptyk_-CLISW9vxJVbQOSjbzIC7fiwSIyEPWWAFyMxz1JkzRjUj1VfEFYQLblNQLSG8AVXV_Vm8D0Koxb3sfQgEMBtT_Bc0EfF8M_xA6"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-semibold text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-slate-500">Project Lead</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">settings</span>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="flex-1 ml-60">
+<!-- TopNavBar (JSON Derived) -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-end items-center px-8 gap-4">
+<div class="mr-auto">
+<h2 class="text-[18px] font-semibold text-on-surface tracking-tight">Dashboard</h2>
+</div>
+<button class="bg-primary-container text-on-primary hover:opacity-90 active:scale-98 transition-all px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New task
+            </button>
+<div class="relative p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-error rounded-full border-2 border-slate-50"></span>
+</div>
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-xs cursor-pointer border border-primary/10">
+                AR
+            </div>
+</header>
+<!-- Main Content -->
+<main class="mt-16 p-6 bg-[#F8F8FC] min-h-[calc(100vh-64px)] space-y-6">
+<!-- ROW 1: KPI METRIC CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-outline-variant/30 flex justify-between">
+<div class="flex flex-col justify-between">
+<div>
+<p class="text-xs font-medium text-slate-500 mb-1">Total tasks</p>
+<h3 class="text-2xl font-bold text-[#0D0D1A]">48</h3>
+</div>
+<div class="h-6 w-24 mt-2">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 30">
+<path d="M0 25 Q 10 15, 20 20 T 40 10 T 60 18 T 80 5 T 100 15" fill="none" stroke="#534AB7" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#EEEDFE] flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">check_box</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-outline-variant/30 flex justify-between">
+<div class="flex flex-col justify-between">
+<div>
+<p class="text-xs font-medium text-slate-500 mb-1">In progress</p>
+<h3 class="text-2xl font-bold text-[#185FA5]">12</h3>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[16px] text-[#1D9E75]">arrow_upward</span>
+<span class="text-[11px] font-semibold text-[#1D9E75] font-mono">+3 since yesterday</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#E6F1FB] flex items-center justify-center text-[#185FA5]">
+<span class="material-symbols-outlined">pending</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-outline-variant/30 flex justify-between">
+<div class="flex flex-col justify-between">
+<div>
+<p class="text-xs font-medium text-slate-500 mb-1">Overdue</p>
+<h3 class="text-2xl font-bold text-[#E24B4A]">4</h3>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[16px] text-[#E24B4A]">error</span>
+<span class="text-[11px] font-semibold text-[#E24B4A]">Needs attention</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#FCEBEB] flex items-center justify-center text-[#E24B4A]">
+<span class="material-symbols-outlined">report_problem</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-outline-variant/30 flex justify-between">
+<div class="flex flex-col justify-between w-full">
+<div>
+<p class="text-xs font-medium text-slate-500 mb-1">Completed</p>
+<h3 class="text-2xl font-bold text-[#1D9E75]">31</h3>
+</div>
+<div class="w-full mt-3">
+<div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-[#1D9E75] rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-[10px] mt-1 text-slate-400 font-mono">65% OF GOAL</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ROW 2: SPLIT LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-5">
+<!-- My Tasks (Left 60%) -->
+<div class="lg:col-span-6 bg-surface-container-lowest rounded-xl border border-outline-variant/30 overflow-hidden">
+<div class="p-5 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<h4 class="font-bold text-on-surface">My tasks</h4>
+<div class="flex items-center gap-4 border-b border-transparent">
+<button class="text-sm font-semibold text-primary border-b-2 border-primary pb-1">Active (8)</button>
+<button class="text-sm font-medium text-slate-400 pb-1 hover:text-slate-600 transition-colors">Completed (5)</button>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer">more_horiz</span>
+</div>
+<div class="divide-y divide-slate-100/50">
+<!-- Task Item -->
+<div class="px-5 py-3.5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors group">
+<input class="w-4 h-4 rounded-sm border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-error" title="High Priority"></div>
+<span class="flex-1 text-sm font-medium text-on-surface">Fix rendering lag on Safari mobile</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold">MOBILE-UI</span>
+<span class="text-xs text-slate-400 font-mono">Oct 24</span>
+<div class="w-6 h-6 rounded-full bg-primary-fixed text-[10px] flex items-center justify-center border border-white">AR</div>
+</div>
+<div class="px-5 py-3.5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors group">
+<input class="w-4 h-4 rounded-sm border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-tertiary" title="Medium Priority"></div>
+<span class="flex-1 text-sm font-medium text-on-surface">Update authentication docs</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold">DOCS</span>
+<span class="text-xs text-slate-400 font-mono">Oct 26</span>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-[10px] flex items-center justify-center border border-white">JB</div>
+</div>
+<div class="px-5 py-3.5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors group">
+<input class="w-4 h-4 rounded-sm border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-[#1D9E75]" title="Low Priority"></div>
+<span class="flex-1 text-sm font-medium text-on-surface">Refactor Tailwind config for v4</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold">CORE</span>
+<span class="text-xs text-slate-400 font-mono">Oct 28</span>
+<div class="w-6 h-6 rounded-full bg-primary-fixed text-[10px] flex items-center justify-center border border-white">AR</div>
+</div>
+<div class="px-5 py-3.5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors group">
+<input class="w-4 h-4 rounded-sm border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-error" title="High Priority"></div>
+<span class="flex-1 text-sm font-medium text-on-surface">Database migration for user settings</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold">DB-API</span>
+<span class="text-xs text-slate-400 font-mono">Nov 01</span>
+<div class="w-6 h-6 rounded-full bg-indigo-100 text-[10px] flex items-center justify-center border border-white">SM</div>
+</div>
+<!-- Quick Add -->
+<div class="px-5 py-3 flex items-center gap-3 text-slate-400 hover:text-primary cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-sm font-medium">Add a new task...</span>
+</div>
+</div>
+</div>
+<!-- Right Column (40%) -->
+<div class="lg:col-span-4 space-y-5">
+<!-- Activity Feed -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-5">
+<h4 class="font-bold text-on-surface mb-6">Activity</h4>
+<div class="space-y-6 relative">
+<!-- Timeline connector -->
+<div class="absolute left-4 top-2 bottom-2 w-0.5 bg-slate-100"></div>
+<!-- Activity Item -->
+<div class="flex items-start gap-4 relative z-10">
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="close up headshot of a smiling middle-eastern man in professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTpNg8F7i9wRlmq8SYZDV797mGS4-lKLlowJDgf5e9sKRD8UtoAr455ek49MCkXOrVgLf99MY8X-0Ojl46OEUHvFV5VNba3H34Zu33QQaFE0LTbPptqgHxpX86AlQYEAaqnbhYinUm7Fd_94m4K_xPe3TtL_xQfS_NWR5dW2NPSmUX0SQrvGO_ufDm_wlFx59U7CeYJ9XyjGuunkQej2QKOwoFMHKUWDH8al_WGd8Dim8VAGMuKhj7xRIKrjZd0J7avO_l3QR2frfD"/>
+<div>
+<p class="text-xs text-on-surface"><span class="font-bold">Sameer</span> moved <span class="font-medium">'Fix bug'</span> to Done</p>
+<p class="text-[10px] text-slate-400 mt-1 font-mono">2h ago</p>
+</div>
+</div>
+<div class="flex items-start gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold border-2 border-white">AR</div>
+<div>
+<p class="text-xs text-on-surface"><span class="font-bold">Alex</span> commented on <span class="font-medium">'UI Audit'</span></p>
+<p class="text-[10px] text-slate-400 mt-1 font-mono">4h ago</p>
+</div>
+</div>
+<div class="flex items-start gap-4 relative z-10">
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="profile portrait of a young woman with a friendly expression outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlOpSi9amnLrDBFxvvOqJboldT1r7AJS9LT2EmWWKygQdUUl9XnFukXq-CgyGefOUH0bVHIUwIShTZiXdYl75bxRF1sHlHn-1sjbLrgqF2Cmf3LElcR3d7INxs2WviFLkFHk_pinAMAOMS3ns0CcFGbWxQKgm9UT6ve-bl8ibJidYHoAMqXjK-57GjuzWUp7QUsLAno_SUFpFZE8JPAFom7lVwUqXMbhhzMVGsQOXrNijaYafgbQmmaalHRH2Z-8MKSUNpPDdicvb7"/>
+<div>
+<p class="text-xs text-on-surface"><span class="font-bold">Julia</span> added <span class="font-medium">'API Specs'</span></p>
+<p class="text-[10px] text-slate-400 mt-1 font-mono">1d ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Projects Overview -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-5">
+<h4 class="font-bold text-on-surface mb-4">Projects overview</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="text-xs font-semibold">Mobile App V2</span>
+<span class="text-[10px] text-slate-400 font-mono">14 tasks</span>
+</div>
+<div class="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-[#1D9E75]"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="text-xs font-semibold">DevFlow CRM</span>
+<span class="text-[10px] text-slate-400 font-mono">8 tasks</span>
+</div>
+<div class="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-[#1D9E75] rounded-full" style="width: 35%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="text-xs font-semibold">Admin Panel</span>
+<span class="text-[10px] text-slate-400 font-mono">22 tasks</span>
+</div>
+<div class="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ROW 3: FULL WIDTH Board Preview -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-5">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-bold text-on-surface">Board Preview</h4>
+<button class="text-xs font-bold text-primary hover:bg-primary-fixed/50 px-3 py-1.5 rounded-lg transition-colors">Open full board</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-[240px]">
+<!-- Todo Column -->
+<div class="bg-[#F8F8FC] rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-center justify-between mb-1">
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Todo</h5>
+<span class="bg-slate-200 text-slate-600 text-[10px] px-2 py-0.5 rounded-full font-bold">12</span>
+</div>
+<div class="bg-white p-3 rounded-lg border border-slate-100 shadow-sm">
+<p class="text-xs font-medium mb-3">Fix modal overflow</p>
+<div class="flex items-center justify-between">
+<span class="text-[9px] font-mono text-slate-400">Oct 28</span>
+<div class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[8px] font-bold">AR</div>
+</div>
+</div>
+<div class="bg-white p-3 rounded-lg border border-slate-100 shadow-sm">
+<p class="text-xs font-medium mb-3">Analytics event tracking</p>
+<div class="flex items-center justify-between">
+<span class="text-[9px] font-mono text-slate-400">Oct 29</span>
+<div class="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-[8px] font-bold">JU</div>
+</div>
+</div>
+</div>
+<!-- In Progress Column -->
+<div class="bg-[#F8F8FC] rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-center justify-between mb-1">
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">In Progress</h5>
+<span class="bg-blue-100 text-[#185FA5] text-[10px] px-2 py-0.5 rounded-full font-bold">5</span>
+</div>
+<div class="bg-white p-3 rounded-lg border-l-2 border-l-primary border-y border-r border-slate-100 shadow-sm">
+<p class="text-xs font-medium mb-3">Refactor auth hooks</p>
+<div class="flex items-center justify-between">
+<span class="text-[9px] font-mono text-slate-400">Oct 26</span>
+<div class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[8px] font-bold">AR</div>
+</div>
+</div>
+<div class="bg-white p-3 rounded-lg border-l-2 border-l-primary border-y border-r border-slate-100 shadow-sm">
+<p class="text-xs font-medium mb-3">Design system audit</p>
+<div class="flex items-center justify-between">
+<span class="text-[9px] font-mono text-slate-400">Oct 27</span>
+<div class="w-5 h-5 rounded-full bg-indigo-100 flex items-center justify-center text-[8px] font-bold">SM</div>
+</div>
+</div>
+</div>
+<!-- In Review Column -->
+<div class="bg-[#F8F8FC] rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-center justify-between mb-1">
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">In Review</h5>
+<span class="bg-orange-100 text-tertiary text-[10px] px-2 py-0.5 rounded-full font-bold">3</span>
+</div>
+<div class="bg-white p-3 rounded-lg border border-slate-100 shadow-sm">
+<p class="text-xs font-medium mb-3">Update landing assets</p>
+<div class="flex items-center justify-between">
+<span class="text-[9px] font-mono text-slate-400">Oct 25</span>
+<div class="flex -space-x-1">
+<div class="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-[8px] font-bold border border-white">JU</div>
+<div class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[8px] font-bold border border-white">AR</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Done Column -->
+<div class="bg-[#F8F8FC] rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-center justify-between mb-1">
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Done</h5>
+<span class="bg-green-100 text-[#1D9E75] text-[10px] px-2 py-0.5 rounded-full font-bold">24</span>
+</div>
+<div class="bg-white/60 p-3 rounded-lg border border-slate-100 shadow-sm opacity-80">
+<p class="text-xs font-medium mb-3 line-through text-slate-400">Sprint planning Q4</p>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-green-500 text-[14px]">check_circle</span>
+<div class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[8px] font-bold">AR</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,112 @@
+<section class="board-column" [class.is-faded]="column().faded">
+  <header class="column-header" [style.border-bottom-color]="column().accent">
+    <div class="column-head-left">
+      <span class="dot" [style.background]="column().accent" aria-hidden="true"></span>
+      <h3>{{ column().name }}</h3>
+      <span class="count">{{ column().count }}</span>
+    </div>
+
+    <div class="column-head-actions" aria-label="Column actions">
+      <button type="button" aria-label="Add task">
+        <span class="material-symbols-outlined">add</span>
+      </button>
+      <button type="button" aria-label="More options">
+        <span class="material-symbols-outlined">more_horiz</span>
+      </button>
+    </div>
+  </header>
+
+  <div
+    class="column-body"
+    cdkDropList
+    [id]="column().id"
+    [cdkDropListData]="column().cards"
+    [cdkDropListConnectedTo]="dropListConnections()"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    @for (card of column().cards; track card.id) {
+      @if (card.inQuickCreate) {
+        <article class="task-card quick-create">
+          <input type="text" placeholder="Task title..." aria-label="Task title" />
+          <div class="quick-meta">
+            <span><strong>Enter</strong> to save • <strong>Esc</strong> to cancel</span>
+            <div>
+              <button type="button" aria-label="Label">
+                <span class="material-symbols-outlined">label</span>
+              </button>
+              <button type="button" aria-label="Assignee">
+                <span class="material-symbols-outlined">person_add</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      } @else {
+        <article class="task-card" [class.is-dragging]="card.dragging" [class.is-done]="card.done" cdkDrag>
+          <div class="card-head">
+            <span class="priority-chip" [class]="priorityClass(card.priority)">{{ card.priority }}</span>
+            @if (card.tags?.length) {
+              <div class="tag-list">
+                @for (tag of card.tags; track tag) {
+                  <span>{{ tag }}</span>
+                }
+              </div>
+            }
+          </div>
+
+          <h4>{{ card.title }}</h4>
+
+          @if (card.description) {
+            <p class="description-text">{{ card.description }}</p>
+          }
+
+          <div class="card-meta">
+            @if (card.codeTask) {
+              <span class="material-symbols-outlined">terminal</span>
+            }
+
+            @if (card.iconCounts?.attachments) {
+              <span class="meta-chip">
+                <span class="material-symbols-outlined">attach_file</span>
+                <span class="technical">{{ card.iconCounts?.attachments }}</span>
+              </span>
+            }
+
+            @if (card.iconCounts?.comments) {
+              <span class="meta-chip">
+                <span class="material-symbols-outlined">chat_bubble</span>
+                <span class="technical">{{ card.iconCounts?.comments }}</span>
+              </span>
+            }
+
+            <div class="meta-right">
+              @if (card.dateLabel) {
+                <span class="date" [class.is-overdue]="card.overdue">{{ card.dateLabel }}</span>
+              }
+
+              @if (card.avatarUrls?.length) {
+                <div class="avatar-stack">
+                  @for (avatar of card.avatarUrls; track avatar) {
+                    <img [src]="avatar" alt="Assignee avatar" />
+                  }
+                </div>
+              }
+
+              @if (card.avatarInitials?.length) {
+                <div class="avatar-stack initials">
+                  @for (initial of card.avatarInitials; track initial) {
+                    <span>{{ initial }}</span>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    }
+
+    <button class="add-card-btn" type="button">
+      <span class="material-symbols-outlined">add</span>
+      <span>Add task</span>
+    </button>
+  </div>
+</section>

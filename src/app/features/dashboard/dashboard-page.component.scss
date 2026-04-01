@@ -1,0 +1,61 @@
+:host {
+  display: block;
+}
+
+.dashboard-page {
+  min-height: 100dvh;
+  display: flex;
+}
+
+.dashboard-main-wrap {
+  flex: 1;
+  margin-left: 15rem;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.dashboard-main-content {
+  background: #f8f8fc;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+:root[data-theme='dark'] .dashboard-main-content {
+  background: color-mix(in srgb, var(--color-surface) 92%, #0a0c13 8%);
+}
+
+.split-layout {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.split-right {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .split-layout {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1023px) {
+  .dashboard-page {
+    display: block;
+  }
+
+  .dashboard-main-wrap {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .dashboard-main-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,104 @@
+:host {
+  display: block;
+}
+
+.metrics-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.metric-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  outline: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 0.25rem;
+}
+
+.metric-value {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.metric-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+}
+
+.sparkline-wrap {
+  width: 6rem;
+  height: 1.5rem;
+  color: var(--color-primary-container);
+}
+
+.sparkline-wrap svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.trend-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.trend-wrap .material-symbols-outlined {
+  font-size: 1rem;
+}
+
+.trend-text,
+.progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+}
+
+.progress-wrap {
+  width: 100%;
+}
+
+.progress-track {
+  width: 100%;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface-container-high) 60%, transparent);
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+}
+
+@media (min-width: 640px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .metrics-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,106 @@
+<main class="auth-layout register-layout auth-page">
+  <section class="left-panel auth-left" aria-label="DevFlow visual anchor">
+    <div class="brand-row">
+      <span class="brand">DevFlow</span>
+    </div>
+
+    <div class="visual-center" aria-hidden="true">
+      <div class="ambient-orb"></div>
+      <div class="shape-grid">
+        <div class="shape shape-a"></div>
+        <div class="shape shape-b"></div>
+        <div class="shape shape-c"></div>
+        <div class="shape shape-d"></div>
+      </div>
+    </div>
+
+    <app-register-feature-list [items]="highlights" />
+  </section>
+
+  <section class="right-panel auth-right" aria-label="Register form">
+    <div class="mobile-brand">
+      <span>DevFlow</span>
+    </div>
+
+    <div class="form-wrap auth-form-shell">
+      <div class="top-controls">
+        <button
+          class="theme-toggle"
+          type="button"
+          (click)="themeService.toggleTheme()"
+          [attr.aria-label]="themeService.themeToggleAriaLabel()"
+          [attr.aria-pressed]="themeService.mode() === 'dark'"
+        >
+          {{ themeService.mode() === 'dark' ? 'Light theme' : 'Dark theme' }}
+        </button>
+      </div>
+
+      <header class="form-head">
+        <h1>Create your account</h1>
+        <p>Sign in to your workspace</p>
+      </header>
+
+      <form [formGroup]="registerForm" (ngSubmit)="submit()" class="register-form" novalidate>
+        <label class="field" for="fullName">
+          <span class="field-label">Full name</span>
+          <input id="fullName" type="text" placeholder="John Doe" formControlName="fullName" />
+          @if (registerForm.controls.fullName.touched && registerForm.controls.fullName.invalid) {
+            <span class="field-error">Please provide your full name.</span>
+          }
+        </label>
+
+        <label class="field" for="email">
+          <span class="field-label">Email</span>
+          <input id="email" type="email" placeholder="john@example.com" formControlName="email" />
+          @if (registerForm.controls.email.touched && registerForm.controls.email.invalid) {
+            <span class="field-error">Enter a valid email address.</span>
+          }
+        </label>
+
+        <label class="field" for="password">
+          <span class="field-label">Password</span>
+          <input id="password" type="password" placeholder="••••••••" formControlName="password" />
+          <app-password-strength-indicator
+            [level]="passwordStrength().level"
+            [label]="passwordStrength().label"
+          />
+        </label>
+
+        <label class="field" for="confirmPassword">
+          <span class="field-label">Confirm password</span>
+          <input id="confirmPassword" type="password" placeholder="••••••••" formControlName="confirmPassword" />
+          @if (registerForm.touched && registerForm.hasError('passwordMismatch')) {
+            <span class="field-error">Passwords do not match.</span>
+          }
+        </label>
+
+        <label class="terms-row" for="termsAccepted">
+          <input id="termsAccepted" type="checkbox" formControlName="termsAccepted" />
+          <span>
+            I agree to <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </span>
+        </label>
+
+        @if (registerForm.controls.termsAccepted.touched && registerForm.controls.termsAccepted.invalid) {
+          <p class="field-error">You need to accept the terms to continue.</p>
+        }
+
+        <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">
+          Create account
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </form>
+
+      <footer class="footer-copy">
+        <p>
+          Already have an account?
+          <a [routerLink]="'/login'">Log in</a>
+        </p>
+      </footer>
+    </div>
+
+    <div class="mobile-footer">
+      <p>© 2024 DevFlow Precision Systems</p>
+    </div>
+  </section>
+</main>

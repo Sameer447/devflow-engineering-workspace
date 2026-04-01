@@ -1,0 +1,48 @@
+:host {
+  display: block;
+}
+
+.issues-page {
+  min-height: 100dvh;
+  display: flex;
+}
+
+.issues-main-wrap {
+  margin-left: 15rem;
+  flex: 1;
+  min-height: 100dvh;
+}
+
+.issues-main-content {
+  min-height: 100dvh;
+  padding-top: 3.25rem;
+  background: color-mix(in srgb, var(--color-surface) 94%, #f5f6fb 6%);
+}
+
+.issues-content-inner {
+  width: min(100%, 87.5rem);
+  margin-inline: auto;
+  padding: 2rem;
+}
+
+:root[data-theme='dark'] .issues-main-content {
+  background: color-mix(in srgb, var(--color-surface) 94%, #0a0c13 6%);
+}
+
+@media (max-width: 1023px) {
+  .issues-page {
+    display: block;
+  }
+
+  .issues-main-wrap {
+    margin-left: 0;
+  }
+
+  .issues-main-content {
+    padding-top: 0;
+  }
+
+  .issues-content-inner {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,113 @@
+:host {
+  display: block;
+}
+
+.board-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 16rem;
+  height: 100dvh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: color-mix(in srgb, var(--color-surface-container-low) 72%, #e2e8f0 28%);
+  border-right: 1px solid color-mix(in srgb, var(--color-outline-variant) 45%, transparent 55%);
+  z-index: 50;
+}
+
+.brand-block {
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.brand-block h1 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--color-primary) 84%, #0f172a 16%);
+}
+
+.brand-block p {
+  margin-top: 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-secondary) 72%, transparent 28%);
+}
+
+.board-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.nav-item {
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: color-mix(in srgb, var(--color-on-surface) 72%, transparent 28%);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.nav-item .material-symbols-outlined {
+  font-size: 1.25rem;
+}
+
+.nav-item.is-active {
+  background: var(--color-surface-container-lowest);
+  color: var(--color-primary);
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.nav-item:hover {
+  background: color-mix(in srgb, var(--color-surface-container-high) 70%, transparent 30%);
+}
+
+.footer-actions {
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.new-task-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.68rem 0.8rem;
+  margin-bottom: 0.5rem;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-primary) 28%, transparent 72%);
+  transition: transform 120ms ease;
+}
+
+.new-task-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 960px) {
+  .board-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .board-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

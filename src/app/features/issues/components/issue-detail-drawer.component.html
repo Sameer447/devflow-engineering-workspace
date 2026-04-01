@@ -1,0 +1,205 @@
+<div class="drawer-overlay" (click)="onClose()" aria-hidden="true"></div>
+
+<aside class="issue-drawer" aria-label="Issue detail side panel">
+  <header class="drawer-header">
+    <div class="header-left">
+      <button type="button" class="icon-btn" (click)="onClose()" aria-label="Close side drawer">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <span class="issue-id">{{ detail().id }}</span>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" aria-label="Copy link">
+        <span class="material-symbols-outlined">link</span>
+      </button>
+      <button type="button" class="icon-btn" aria-label="Open full details" (click)="onExpand()">
+        <span class="material-symbols-outlined">open_in_full</span>
+      </button>
+      <button type="button" class="icon-btn" aria-label="More options">
+        <span class="material-symbols-outlined">more_vert</span>
+      </button>
+      <span class="header-divider" aria-hidden="true"></span>
+      <button type="button" class="icon-btn" (click)="onClose()" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="drawer-content">
+    <section class="identity-section">
+      <div class="meta-row">
+        <span class="status-badge" [class]="'status-badge ' + detail().statusTone">{{ detail().status }}</span>
+        <span class="meta-dot" aria-hidden="true"></span>
+        <span class="workspace-label">{{ detail().workspace }}</span>
+      </div>
+      <h2 class="identity-title">{{ detail().title }}</h2>
+    </section>
+
+    <section class="properties-section" aria-label="Issue properties">
+      <div class="properties-grid">
+        <article class="property-cell">
+          <p class="property-label">Assignee</p>
+          <div class="property-assignee">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbF5MvN7lDF_GwxAPc2j3xWQTrnX2wo1gjVrT4XD6q2iywQk3QBYPxOtwu5Ps778CpS6EvbaWGlpc3c5KN_2iyGFxzAwF2vu7YefZ-t_9AZFPAasraOku50AEp8cfZ6q16unHKW1wexbu9G6YfE1MbVe_K5ATijC00iJuND6eZxSB9ZOR2EdhnVB3_na7j0Q7UBdzI0okh_XqgiLtIeUBbTY-flZjYFdon_EIEgvOo1PQX9FEUIN_B2YuNcmhebE7LaGjtV75ItG1O"
+              alt="Assignee avatar"
+            />
+            <span>{{ detail().assignee }}</span>
+          </div>
+        </article>
+
+        <article class="property-cell">
+          <p class="property-label">Priority</p>
+          <span class="priority-pill">
+            <span class="priority-dot" aria-hidden="true"></span>
+            {{ detail().priority }}
+          </span>
+        </article>
+
+        <article class="property-cell">
+          <p class="property-label">Due Date</p>
+          <span class="property-inline">
+            <span class="material-symbols-outlined">calendar_today</span>
+            {{ detail().dueDate }}
+          </span>
+        </article>
+
+        <article class="property-cell">
+          <p class="property-label">Project</p>
+          <span class="property-inline">
+            <span class="material-symbols-outlined">layers</span>
+            {{ detail().project }}
+          </span>
+        </article>
+
+        <article class="property-cell labels-cell">
+          <p class="property-label">Labels</p>
+          <div class="label-list">
+            @for (label of detail().labels; track label) {
+              <span>{{ label }}</span>
+            }
+            <button type="button" aria-label="Add label">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h3 class="section-title">
+        <span class="material-symbols-outlined">description</span>
+        Description
+      </h3>
+
+      <div class="editor-shell">
+        <div class="editor-toolbar">
+          <button type="button" aria-label="Bold"><span class="material-symbols-outlined">format_bold</span></button>
+          <button type="button" aria-label="Italic"><span class="material-symbols-outlined">format_italic</span></button>
+          <button type="button" class="active" aria-label="Code"><span class="material-symbols-outlined">code</span></button>
+          <button type="button" aria-label="Bulleted list"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <button type="button" aria-label="Image"><span class="material-symbols-outlined">image</span></button>
+        </div>
+
+        <div class="editor-body">
+          <p>{{ detail().description }}</p>
+          <code>{{ detail().codeRef }}</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h3 class="section-title">
+        <span class="material-symbols-outlined">attach_file</span>
+        Attachments (2)
+      </h3>
+
+      <div class="attachment-list">
+        @for (attachment of detail().attachments; track attachment.name) {
+          <button type="button" class="attachment-item">
+            <span class="attachment-icon" [class.pdf]="attachment.type === 'pdf'" [class.image]="attachment.type === 'image'">
+              <span class="material-symbols-outlined">{{ attachment.type === 'pdf' ? 'picture_as_pdf' : 'image' }}</span>
+            </span>
+            <span class="attachment-text">
+              <span>{{ attachment.name }}</span>
+              <small>{{ attachment.size }}</small>
+            </span>
+            <span class="material-symbols-outlined">download</span>
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="section-row">
+        <h3 class="section-title">
+          <span class="material-symbols-outlined">check_circle</span>
+          Subtasks
+        </h3>
+        <span class="subtask-count">0 / {{ detail().subtasks.length }}</span>
+      </div>
+
+      <ul class="subtask-list">
+        @for (subtask of detail().subtasks; track subtask.label) {
+          <li>
+            <span class="material-symbols-outlined">{{ subtask.completed ? 'check_circle' : 'radio_button_unchecked' }}</span>
+            <span>{{ subtask.label }}</span>
+          </li>
+        }
+        <li class="add-subtask">
+          <span class="material-symbols-outlined">add</span>
+          <span>Add subtask</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="detail-section comments-section">
+      <div class="comment-tabs">
+        <button type="button" class="active">Comments</button>
+        <button type="button">Activity</button>
+      </div>
+
+      <div class="comment-thread">
+        @for (comment of detail().comments; track comment.author + comment.timeAgo) {
+          <article>
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvrFe4ouut0weSj_wMVgBNsLGxHLw8NQehbHdXRw4x2HXaho7dqSuDPi-N8xw-J1pzsOvjfoWFDSaBUvJLwZ4YcRlhp9ZdLpo7vwfGBN_0cJ_AFk3gK9b-50cHj2qg0olX8lLf-1OYeBkMnILGUKWfkuoQLPfQzQD2xBSol58cMkCUevTBY_-AF-EkztMzTRVHnqOh94h_fugLyC60Zxcp8WDLKeSbNhufZzrkQjm-Tysw6pecvlBoipeJlREnyCvA1hsCsIPo85D5"
+              alt="Comment author avatar"
+            />
+            <div>
+              <div class="comment-head">
+                <strong>{{ comment.author }}</strong>
+                <span>{{ comment.timeAgo }}</span>
+              </div>
+              <p>{{ comment.message }}</p>
+              <div class="comment-actions">
+                <button type="button">Reply</button>
+                <button type="button">React</button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  </main>
+
+  <footer class="drawer-footer">
+    <img
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIv_pD0GqxWANQfltHd9L_N2GrpTcOH8EASe79sDoubZ6LR5SHtezcFCIoVSJ_V5BNx4Kcl8_zkYhHgB9Jeh8KfNf85wS5Bf8_Y5nrZ6AGC-TgPF6nql07koCsgo2kFSEbyl3l8d9q9r2zcwfYiD3HLRsYsoUrt5yx1v7OxXeFuzErbzRpkg4eOtUbc_br7IKtLqLP3jIscNgpTfHQEEnYjlFqKfp4x8HKvalE-mq-Bgve898jbonQ6QsM99WIO5KKQ2Ne786mSdlu"
+      alt="Current user avatar"
+    />
+
+    <div class="comment-input-wrap">
+      <textarea rows="1" placeholder="Write a comment..."></textarea>
+      <div class="comment-input-actions">
+        <div>
+          <button type="button" aria-label="Mention someone"><span class="material-symbols-outlined">alternate_email</span></button>
+          <button type="button" aria-label="Add emoji"><span class="material-symbols-outlined">mood</span></button>
+        </div>
+        <button type="button" class="comment-submit">Comment</button>
+      </div>
+    </div>
+  </footer>
+</aside>

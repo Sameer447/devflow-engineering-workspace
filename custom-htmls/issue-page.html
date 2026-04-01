@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevFlow - All Issues</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-dim": "#d9dade",
+            "on-tertiary-fixed": "#2f1500",
+            "on-background": "#1a1c1f",
+            "surface-container-low": "#f3f3f7",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed": "#e1dfff",
+            "inverse-on-surface": "#f0f0f4",
+            "on-primary-container": "#d1ccff",
+            "secondary-fixed-dim": "#c5c3e6",
+            "surface-variant": "#e2e2e6",
+            "surface-tint": "#584fbc",
+            "background": "#f9f9fd",
+            "outline": "#787584",
+            "on-secondary-container": "#60607e",
+            "tertiary": "#683500",
+            "surface-container-high": "#e8e8ec",
+            "inverse-primary": "#c5c0ff",
+            "on-secondary": "#ffffff",
+            "surface-container": "#ededf1",
+            "on-surface": "#1a1c1f",
+            "primary-fixed-dim": "#c5c0ff",
+            "tertiary-container": "#8a4900",
+            "secondary-container": "#dedcff",
+            "primary": "#3b309e",
+            "on-primary-fixed-variant": "#3f35a3",
+            "on-secondary-fixed-variant": "#444461",
+            "outline-variant": "#c8c4d5",
+            "on-surface-variant": "#474553",
+            "on-tertiary-container": "#ffc69a",
+            "on-primary-fixed": "#140067",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "surface-bright": "#f9f9fd",
+            "tertiary-fixed-dim": "#ffb77d",
+            "surface": "#f9f9fd",
+            "primary-fixed": "#e3dfff",
+            "surface-container-highest": "#e2e2e6",
+            "tertiary-fixed": "#ffdcc3",
+            "inverse-surface": "#2e3034",
+            "on-secondary-fixed": "#181933",
+            "secondary": "#5c5c7a",
+            "primary-container": "#534ab7",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff"
+          },
+          fontFamily: {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Inter"],
+            "jetbrains": ["JetBrains Mono"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+    }
+    body { background-color: #F8F8FC; }
+    .issue-row:hover { background-color: #F1F0FB; }
+  </style>
+</head>
+<body class="font-body text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[240px] border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex flex-col py-4 px-3 font-inter text-sm antialiased z-40">
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white font-jetbrains">DevFlow</span>
+<span class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold">Engineering Workspace</span>
+</div>
+</div>
+<button class="mb-6 flex items-center justify-center gap-2 w-full py-2 bg-primary-container text-white rounded-xl font-semibold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+      New Issue
+    </button>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+        Dashboard
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-indigo-700 dark:text-indigo-400 font-semibold bg-slate-200/50 dark:bg-slate-800/50 cursor-pointer" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+        Issues
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">view_kanban</span>
+        Board
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">speed</span>
+        Sprint
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">assessment</span>
+        Reports
+      </a>
+<div class="pt-6 pb-2 px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Your Projects</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+        Engine
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+        Design System
+      </a>
+</nav>
+<div class="mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+        Documentation
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">settings</span>
+        Settings
+      </a>
+<div class="mt-4 p-2 flex items-center gap-3 rounded-xl hover:bg-slate-200/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<img class="w-8 h-8 rounded-full border border-slate-200" data-alt="portrait of a focused senior software engineer with glasses in a minimalist workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaQ6zN9j4k9-o7hYR4t1FpqhF9rLCmdhe39HnasmdSQo7fmay0z4afIGBnGkMNgh8vJPmiLgNW8XpS28F5SfyrDr3cNLGAPRMV0R642XsbxRo27EPqivq1pEGvv4KMloI3hCh4AQ-NaNTZsoBdytsoYXF2Wlq4A8bvLexO0ZS3Wwpfw5vNRx7bJ5npe7pH8IianvYdFvF9D6AaZNg5BiZCkOCz1ORA7LWkTp_5lk2N5XO24-X3JEytr08aLcaSX2p8rACMonff6Ka9"/>
+<div class="flex flex-col min-w-0">
+<span class="text-xs font-semibold text-slate-900 dark:text-white truncate">Alex Rivers</span>
+<span class="text-[10px] text-slate-500 truncate">Senior Lead</span>
+</div>
+<span class="material-symbols-outlined ml-auto text-slate-400">unfold_more</span>
+</div>
+</div>
+</aside>
+<!-- TopNavBar & Main Canvas -->
+<div class="ml-[240px]">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-[52px] bg-white dark:bg-slate-950 flex items-center justify-between px-6 z-30 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<nav class="flex items-center gap-2 text-xs font-medium text-slate-500">
+<span>DevFlow</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Issues</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-slate-900 font-semibold">All</span>
+</nav>
+<div class="h-4 w-[1px] bg-slate-200 mx-2"></div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-slate-100 border-none rounded-lg text-xs w-64 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all" placeholder="Search issues..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<a class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors" href="#">My Tasks</a>
+<a class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors" href="#">Assigned</a>
+<a class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors" href="#">Activity</a>
+</div>
+<div class="h-4 w-[1px] bg-slate-200"></div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="ml-2 px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:opacity-90 transition-opacity">
+            Invite
+          </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[52px] min-h-screen">
+<div class="p-8 max-w-[1400px] mx-auto">
+<!-- View Title & Controls -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-on-surface">All Issues</h1>
+<p class="text-sm text-slate-500 mt-1">Manage and track engineering tasks across all active projects.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+              Filters
+            </button>
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+              Sort
+            </button>
+</div>
+</div>
+<!-- Issue Table -->
+<div class="bg-white rounded-2xl overflow-hidden border border-slate-200/60">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+<th class="px-6 py-4 w-24">ID</th>
+<th class="px-4 py-4 w-32">Status</th>
+<th class="px-4 py-4 w-32">Priority</th>
+<th class="px-4 py-4">Issue Title</th>
+<th class="px-4 py-4 w-32">Project</th>
+<th class="px-4 py-4 w-32">Assignee</th>
+<th class="px-6 py-4 w-24 text-right">Created</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Issue Row 1 -->
+<tr class="issue-row transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-jetbrains text-xs text-slate-400">DF-101</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 px-2 py-1 rounded-md bg-indigo-50 text-indigo-700 text-[11px] font-bold w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+                    IN PROGRESS
+                  </div>
+</td>
+<td class="px-4 py-4">
+<div class="px-2 py-1 rounded-md bg-error-container/30 text-error text-[11px] font-bold w-fit">URGENT</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors">Implement Redis caching for user sessions</span>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-0.5 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500 uppercase">Engine</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="close-up portrait of a woman software engineer with a neutral expression in a bright modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAidF7UYgtHR2DBijjg4CPvs_k5A1LQl897BSe2uyNg_Cmn3b4kqaHbEQ7YAR7yJWca5t0_f68kVzwfS_6I3BR2Uc4BwFT2xssOnTsIbwxf-G-7DFPgEYz8u0j-RTu7kAAxcMdmG65_M8zSXC4JTTS7GKnX3qt2SC-oQwf81oGDAfYvwRfGgfqoMbcfF_h7MUXRpcJhcb3vcX0S9CU--oiNwp0P9n9E4NDJuqbn9pshdE-cisjqvG5ykdx69F62A37tXflNKAUnbS9m"/>
+<span class="text-xs text-slate-600">Jane Doe</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-xs text-slate-400 font-jetbrains">2h ago</td>
+</tr>
+<!-- Issue Row 2 -->
+<tr class="issue-row transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-jetbrains text-xs text-slate-400">DF-104</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 px-2 py-1 rounded-md bg-slate-100 text-slate-600 text-[11px] font-bold w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                    TODO
+                  </div>
+</td>
+<td class="px-4 py-4">
+<div class="px-2 py-1 rounded-md bg-amber-50 text-amber-700 text-[11px] font-bold w-fit">HIGH</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors">Refactor navigation layout for mobile responsiveness</span>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-0.5 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500 uppercase">Design</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="professional headshot of a man with a friendly smile wearing a casual shirt against a blurred office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMOiu6NRxt9W48ZQv74PMKSW5O1wpAbDHtREnLvHHY8iVxOQDlCx32mWvBmtDUkHEm88mMiQPY7QQXyfsZCS6GzKbZ_f34K0IpLLcw3pUC0I1tk6luVQZ5lKY8GtIi5oyZ3digof3hiJiNIZwx4c07zF1LkAoFy-KwRNpFr4orb5WZLJn0MwixoiN2C1_PUyCDTYqj8wLZE2renqgkUeoVDgdZ-s7XvAOUhJ9gkVpyVfQB1lUpdkasa_vEOChybkray4o0ufm7Z4N6"/>
+<span class="text-xs text-slate-600">A. Miller</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-xs text-slate-400 font-jetbrains">5h ago</td>
+</tr>
+<!-- Issue Row 3 -->
+<tr class="issue-row transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-jetbrains text-xs text-slate-400">DF-108</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 px-2 py-1 rounded-md bg-emerald-50 text-emerald-700 text-[11px] font-bold w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    DONE
+                  </div>
+</td>
+<td class="px-4 py-4">
+<div class="px-2 py-1 rounded-md bg-slate-50 text-slate-500 text-[11px] font-bold w-fit">LOW</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors">Update internal documentation for CI/CD pipeline</span>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-0.5 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500 uppercase">Engine</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="headshot of a young professional with short dark hair in a clean minimalist environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlbEFriuWwXhDJS2Rfs_CNSUWyyS5naulqGrvmaHgYPnBtnlhzgjzyCfpc1uKdtT2KpwQNqExkVC2AO5DDFVP4tO5m3aG1Naz_Ea69851au7J2cLZGirdgcbLNkAKcdImcR9mf-3EMxXoWl97cp5NUVN4aMDqcrxUm9N-texHqtvyPkItZRsXq-9LMKmBj6rzthexAIt5A03zy3EGyJekh85_usaxvpYKecAryfnadI3LFYUO66j8OrLGUFoZb8dnpHh2YdzkaQ3Al"/>
+<span class="text-xs text-slate-600">S. Rivers</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-xs text-slate-400 font-jetbrains">1d ago</td>
+</tr>
+<!-- Issue Row 4 -->
+<tr class="issue-row transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-jetbrains text-xs text-slate-400">DF-112</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 px-2 py-1 rounded-md bg-indigo-50 text-indigo-700 text-[11px] font-bold w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+                    IN PROGRESS
+                  </div>
+</td>
+<td class="px-4 py-4">
+<div class="px-2 py-1 rounded-md bg-blue-50 text-blue-700 text-[11px] font-bold w-fit">MEDIUM</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors">API Rate limiting for public endpoints</span>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-0.5 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500 uppercase">Engine</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="portrait of a software developer with a thoughtful expression in a workspace with soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCluFGsMhcuVVGgbkQNsGlZnMNvGyaVgGlA48MBL08hYmM6uk5Pe1ME5rxBMAAVa7Nth5f03O8LE2T0sSzXUo_-8OQ63Z3qqRyeZsnSG3lQsHgzavdpbyWRlB7M8LCsxhy6sKwkVDtJ8jp80nGOLlplKrn7pAm7TIz72_HovAQwHXBc12XeaKr-OeB37oJ3q8qz4dp1r1x9z6CZ6BgcmCPvndA9GF1p_C0MTlHkKueDM1uneFGIS0sy59qHpsh4BMi3bO6oLfm_6HzD"/>
+<span class="text-xs text-slate-600">B. Knight</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-xs text-slate-400 font-jetbrains">3d ago</td>
+</tr>
+<!-- Issue Row 5 -->
+<tr class="issue-row transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-jetbrains text-xs text-slate-400">DF-115</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 px-2 py-1 rounded-md bg-slate-100 text-slate-600 text-[11px] font-bold w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                    TODO
+                  </div>
+</td>
+<td class="px-4 py-4">
+<div class="px-2 py-1 rounded-md bg-amber-50 text-amber-700 text-[11px] font-bold w-fit">HIGH</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors">Dark mode color palette refinement</span>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-0.5 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500 uppercase">Design</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">?</div>
+<span class="text-xs text-slate-400 italic">Unassigned</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-xs text-slate-400 font-jetbrains">4d ago</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-slate-50/30 flex items-center justify-between border-t border-slate-100">
+<span class="text-xs text-slate-500">Showing <span class="font-bold text-slate-900">5</span> of <span class="font-bold text-slate-900">124</span> issues</span>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-400 cursor-not-allowed">Previous</button>
+<button class="px-3 py-1.5 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-700 hover:bg-white transition-colors">Next</button>
+</div>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-4 gap-6 mt-8">
+<div class="bg-white p-5 rounded-2xl border border-slate-200/60">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Velocity</span>
+<span class="material-symbols-outlined text-indigo-500">trending_up</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">32.4 <span class="text-sm font-normal text-slate-400">pts/wk</span></div>
+<div class="mt-2 text-[10px] text-emerald-600 font-bold">+12% from last sprint</div>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-slate-200/60">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Open Bugs</span>
+<span class="material-symbols-outlined text-error">bug_report</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">18</div>
+<div class="mt-2 text-[10px] text-error font-bold">4 critical issues</div>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-slate-200/60">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Cycle Time</span>
+<span class="material-symbols-outlined text-blue-500">schedule</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">2.4 <span class="text-sm font-normal text-slate-400">days</span></div>
+<div class="mt-2 text-[10px] text-emerald-600 font-bold">-0.5d improvement</div>
+</div>
+<div class="bg-white p-5 rounded-2xl border border-slate-200/60">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Deployment</span>
+<span class="material-symbols-outlined text-emerald-500">rocket_launch</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">Healthy</div>
+<div class="mt-2 text-[10px] text-slate-500 font-bold">Last success 14m ago</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
